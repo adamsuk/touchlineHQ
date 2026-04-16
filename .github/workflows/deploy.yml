@@ -1,8 +1,8 @@
 name: Deploy to Cloudflare Pages
 
 on:
-  push:
-    branches: ["main"]
+  #push:
+  #  branches: ["main"]
   workflow_dispatch:
 
 concurrency:
@@ -27,6 +27,8 @@ jobs:
       - name: Build
         run: npm run build
         working-directory: website
+        env:
+          VITE_BASE_PATH: './'
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:

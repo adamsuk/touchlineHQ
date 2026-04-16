@@ -1,0 +1,77 @@
+name: Deploy to GitHub Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_path:
+        description: 'Base path for GitHub Pages (override auto-detection)'
+        required: false
+        default: ''
+        type: string
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    
+
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Determine base path
+        id: base
+        run: |
+          echo "Repository name: ${{ github.event.repository.name }}"
+          echo "Input base_path: ${{ github.event.inputs.base_path }}"
+          
+          if [ -n "${{ github.event.inputs.base_path }}" ]; then
+            BASE_PATH="${{ github.event.inputs.base_path }}"
+            echo "Using input base path: $BASE_PATH"
+            echo "BASE_PATH=$BASE_PATH" >> "$GITHUB_OUTPUT"
+          elif [[ "${{ github.event.repository.name }}" == *.github.io ]]; then
+            BASE_PATH="./"
+            echo "User/organization site detected, using base path: $BASE_PATH"
+            echo "BASE_PATH=$BASE_PATH" >> "$GITHUB_OUTPUT"
+          else
+            BASE_PATH="/${{ github.event.repository.name }}/"
+            echo "Project site detected, using base path: $BASE_PATH"
+            echo "BASE_PATH=$BASE_PATH" >> "$GITHUB_OUTPUT"
+          fi
+          
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: website/package-lock.json
+          
+      - name: Install dependencies
+        run: npm ci
+        working-directory: website
+        
+      - name: Build project
+        run: npm run build
+        working-directory: website
+        env:
+          VITE_BASE_PATH: ${{ steps.base.outputs.BASE_PATH }}
+        
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: website/dist
+          
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
