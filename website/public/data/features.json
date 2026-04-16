@@ -1,0 +1,68 @@
+[
+  {
+    "title": "Modern Club Website",
+    "description": "Responsive React/TypeScript site with Mantine UI components, fully customizable to match your club branding.",
+    "details": [
+      "Team pages with player profiles and match reports",
+      "News & announcements with markdown support",
+      "Photo gallery with captions",
+      "Committee & staff directory",
+      "Matchday information (directions, parking, facilities)"
+    ]
+  },
+  {
+    "title": "Live Fixtures & Results",
+    "description": "Automatic integration with FA Full-Time via our open source fulltimeCalendar scraper.",
+    "details": [
+      "Daily automated fixture updates",
+      "Results with goal scorers and match statistics",
+      "Team‑specific calendars (ICS download)",
+      "League tables and standings",
+      "Filter by team, date, or competition"
+    ]
+  },
+  {
+    "title": "Content Management",
+    "description": "Update your site by editing simple JSON files — no CMS or database required.",
+    "details": [
+      "All content stored in version‑controlled JSON",
+      "Club info, teams, committee, news, gallery",
+      "Easy backup and rollback via Git",
+      "No server‑side dependencies",
+      "Collaborative editing via GitHub"
+    ]
+  },
+  {
+    "title": "Deployment Flexibility",
+    "description": "Host on Cloudflare Pages, GitHub Pages, Netlify, Vercel, or your own infrastructure.",
+    "details": [
+      "Static site generation (fast, secure, scalable)",
+      "Custom domain support",
+      "Free hosting options available",
+      "SSL/TLS included",
+      "Global CDN delivery"
+    ]
+  },
+  {
+    "title": "Open Source Foundation",
+    "description": "Built on our open source projects — transparent, extensible, and community‑driven.",
+    "details": [
+      "ELBantams: React/TypeScript club website platform",
+      "fulltimeCalendar: Python scraper for FA Full-Time data",
+      "MIT licensed — use, modify, redistribute",
+      "Active development and community support",
+      "Contributions welcome"
+    ]
+  },
+  {
+    "title": "Support & Customization",
+    "description": "We offer setup assistance, custom features, and ongoing support packages.",
+    "details": [
+      "Initial setup and configuration",
+      "Branding and design customization",
+      "Custom feature development",
+      "Training and documentation",
+      "Ongoing maintenance options"
+    ]
+  }
+]

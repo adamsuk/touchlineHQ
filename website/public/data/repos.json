@@ -1,0 +1,28 @@
+[
+  {
+    "name": "ELBantams",
+    "description": "React/TypeScript club website platform for grassroots football clubs.",
+    "url": "https://github.com/adamsuk/ELBantams",
+    "tech": ["React", "TypeScript", "Mantine", "Vite", "Cloudflare Pages"],
+    "features": [
+      "Content‑driven via JSON files",
+      "Live fixtures & results integration",
+      "Customizable theme & branding",
+      "Admin dashboard for club management",
+      "Pitch booking system"
+    ]
+  },
+  {
+    "name": "fulltimeCalendar",
+    "description": "Python scraper that generates ICS calendar files and JSON feeds from FA Full-Time fixture data.",
+    "url": "https://github.com/adamsuk/fulltimeCalendar",
+    "tech": ["Python", "Playwright", "BeautifulSoup", "GitHub Actions"],
+    "features": [
+      "Daily automated scraping via Tor proxy",
+      "ICS calendars for each team",
+      "JSON feeds for fixtures, results, clubs",
+      "Team name normalization & club inference",
+      "GitHub Pages hosting for feeds"
+    ]
+  }
+]

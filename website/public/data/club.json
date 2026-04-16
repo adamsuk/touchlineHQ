@@ -1,0 +1,40 @@
+{
+  "name": "touchlineHQ",
+  "tagline": "Whitelabel grassroots football websites with live fixtures",
+  "description": "We build custom club websites powered by ELBantams open source platform, integrated with FA Full-Time fixtures via fulltimeCalendar.",
+  "email": "hello@touchlinehq.co.uk",
+  "domain": "touchlinehq.co.uk",
+  "socials": {
+    "github": "https://github.com/adamsuk",
+    "twitter": "#",
+    "linkedin": "#"
+  },
+  "primaryColor": "green",
+  "hero": {
+    "title": "Professional websites for grassroots football clubs",
+    "subtitle": "Get a custom club website with live fixtures, results, and team management — no coding required.",
+    "cta": "Get in touch"
+  },
+  "about": [
+    {
+      "icon": "fa-globe",
+      "title": "Whitelabel Platform",
+      "text": "Fully branded club websites based on our open source ELBantams React/TypeScript platform."
+    },
+    {
+      "icon": "fa-calendar-alt",
+      "title": "Live Fixtures & Results",
+      "text": "Automatic integration with FA Full-Time via our fulltimeCalendar scraper — always up to date."
+    },
+    {
+      "icon": "fa-paint-brush",
+      "title": "Customizable Design",
+      "text": "Choose your colors, upload your badge, and customize content through simple JSON files."
+    },
+    {
+      "icon": "fa-rocket",
+      "title": "Easy Deployment",
+      "text": "Deploy to Cloudflare Pages, GitHub Pages, or your own hosting — we handle the setup."
+    }
+  ]
+}
