@@ -31,8 +31,8 @@ export default function App() {
   return (
     <MantineProvider theme={clubTheme}>
       <HashRouter>
-        <AppShell header={{ height: 60 }} padding="md">
-          <AppShell.Header>
+        <AppShell header={{ height: 70 }} padding="md">
+          <AppShell.Header style={{ background: '#1a2b3c', borderBottom: 'none' }}>
             <SiteHeader club={data.club} />
           </AppShell.Header>
           <AppShell.Main>

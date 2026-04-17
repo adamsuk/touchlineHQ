@@ -8,6 +8,11 @@ import type { ClubFeed, LiveResult, LiveFixture } from '../types';
 
 const FORM_GAMES = 5;
 
+function isYoungAgeGroup(teamName: string): boolean {
+  const youngPattern = /\b(U[0-9]|U1[0-2])\b/;
+  return youngPattern.test(teamName);
+}
+
 function getOutcome(r: LiveResult): 'W' | 'D' | 'L' | null {
   if (r.goals_for === null || r.goals_against === null) return null;
   if (r.goals_for > r.goals_against) return 'W';
@@ -83,6 +88,7 @@ export function ClubFixturesDisplay({ feed }: Props) {
 
   // Reset team dropdown when it's no longer in the available list
   const effectiveTeam = selectedTeam && teamOptions.some(o => o.value === selectedTeam) ? selectedTeam : null;
+  const isYoungSelected = effectiveTeam ? isYoungAgeGroup(effectiveTeam.split('\0')[0]) : false;
 
   const fixtures = useMemo(() => {
     let list = feed.fixtures;
@@ -184,7 +190,7 @@ export function ClubFixturesDisplay({ feed }: Props) {
             <Text c="dimmed" size="sm">No results yet.</Text>
           ) : (
             <Stack gap="sm">
-              {effectiveTeam && <ResultsStats results={results} />}
+              {effectiveTeam && !isYoungSelected && <ResultsStats results={results} />}
               <Table striped highlightOnHover withTableBorder>
                 <Table.Thead>
                   <Table.Tr>
@@ -206,11 +212,11 @@ export function ClubFixturesDisplay({ feed }: Props) {
                           {r.home_team}
                         </Text>
                       </Table.Td>
-                      <Table.Td ta="center">
-                        <Text size="sm" fw={700}>
-                          {r.home_score ?? 'X'} - {r.away_score ?? 'X'}
-                        </Text>
-                      </Table.Td>
+                       <Table.Td ta="center">
+                         <Text size="sm" fw={700}>
+                           {isYoungAgeGroup(r.home_team) || isYoungAgeGroup(r.away_team) ? 'Score hidden' : `${r.home_score ?? 'X'} - ${r.away_score ?? 'X'}`}
+                         </Text>
+                       </Table.Td>
                       <Table.Td>
                         <Text size="sm" fw={r.home_away === 'away' ? 700 : 400}>
                           {r.away_team}

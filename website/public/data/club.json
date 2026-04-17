@@ -1,7 +1,7 @@
 {
   "name": "touchlineHQ",
-  "tagline": "Custom grassroots football websites with live fixtures",
-  "description": "We build custom club websites powered by ELBantams open source platform, integrated with FA Full-Time fixtures via fulltimeCalendar.",
+  "tagline": "Grassroots, Streamlined.",
+  "description": "The digital home for your grassroots club. Automate fixtures, manage teams, and protect your club's legacy—all in one place.",
   "email": "hello@touchlinehq.co.uk",
   "domain": "touchlinehq.co.uk",
   "socials": {
@@ -11,9 +11,10 @@
   },
   "primaryColor": "green",
   "hero": {
-    "title": "Professional websites for grassroots football clubs",
-    "subtitle": "Get a custom club website with live fixtures, results, and team management — no coding required.",
-    "cta": "Get in touch"
+    "title": "The Digital Home for Your Grassroots Club.",
+    "subtitle": "Automate your fixtures, manage your teams, and protect your club's legacy—all in one place.",
+    "cta": "Book a Demo",
+    "secondaryCta": "View Sample Club"
   },
   "about": [
     {

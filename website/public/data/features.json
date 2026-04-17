@@ -1,68 +1,46 @@
 [
   {
-    "title": "Modern Club Website",
-    "description": "Responsive React/TypeScript site with Mantine UI components, fully customizable to match your club branding.",
+    "title": "Professional Team Pages",
+    "description": "Dedicated homes for every squad, from U7s to Seniors, with team photos, coach contacts, and fixture lists.",
     "details": [
-      "Team pages with player profiles and match reports",
-      "News & announcements with markdown support",
-      "Photo gallery with captions",
-      "Committee & staff directory",
-      "Matchday information (directions, parking, facilities)"
+      "Professional team profiles with coach information",
+      "Team‑specific fixture lists and results",
+      "Matchday information (venues, kick‑off times)",
+      "No player galleries or personal data storage",
+      "FA safeguarding compliant for younger age groups"
     ]
   },
   {
-    "title": "Live Fixtures & Results",
-    "description": "Automatic integration with FA Full-Time via our open source fulltimeCalendar integration.",
+    "title": "Fixture Sync",
+    "description": "Automated, clean lists pulling directly from official FA sources via our fulltimeCalendar integration.",
     "details": [
-      "Daily automated fixture updates",
-      "Results with goal scorers and match statistics",
-      "Team‑specific calendars (ICS download)",
+      "Live fixtures & results from FA Full‑Time",
+      "Automatic daily updates",
+      "Google Calendar & iCal integration",
       "League tables and standings",
-      "Filter by team, date, or competition"
+      "Age‑appropriate content filtering"
     ]
   },
   {
-    "title": "Content Management",
-    "description": "Update your site by editing simple JSON files — no CMS or database required.",
+    "title": "Easy‑Edit Dashboard",
+    "description": "A simple admin panel for volunteers to update news and sponsors with zero coding required.",
     "details": [
-      "All content stored in version‑controlled JSON",
-      "Club info, teams, committee, news, gallery",
-      "Easy backup and rollback via Git",
-      "No server‑side dependencies",
-      "Collaborative editing via GitHub"
+      "Intuitive content management interface",
+      "Update news, sponsors, and announcements",
+      "Team management and roster updates",
+      "No technical skills required",
+      "Mobile‑friendly volunteer admin"
     ]
   },
   {
-    "title": "Deployment Flexibility",
-    "description": "Host on Cloudflare Pages, GitHub Pages, Netlify, Vercel, or your own infrastructure.",
+    "title": "Privacy First",
+    "description": "GDPR‑compliant architecture using FAN references and zero personal data storage.",
     "details": [
-      "Static site generation (fast, secure, scalable)",
-      "Custom domain support",
-      "Free hosting options available",
-      "SSL/TLS included",
-      "Global CDN delivery"
-    ]
-  },
-  {
-    "title": "Open Source Foundation",
-    "description": "Built on our open source projects — transparent, extensible, and community‑driven.",
-    "details": [
-      "ELBantams: React/TypeScript club website platform",
-      "fulltimeCalendar: Python integration for FA Full-Time data",
-      "MIT licensed — use, modify, redistribute",
-      "Active development and community support",
-      "Contributions welcome"
-    ]
-  },
-  {
-    "title": "Support & Customization",
-    "description": "We offer setup assistance, custom features, and ongoing support packages.",
-    "details": [
-      "Initial setup and configuration",
-      "Branding and design customization",
-      "Custom feature development",
-      "Training and documentation",
-      "Ongoing maintenance options"
+      "No personal player data stored",
+      "FAN‑based payment references only",
+      "Automatic hiding of scores for younger age groups",
+      "Secure, gateway‑only data flow",
+      "FA safeguarding regulations built‑in"
     ]
   }
 ]
