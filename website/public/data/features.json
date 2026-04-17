@@ -42,5 +42,27 @@
       "Secure, gateway‑only data flow",
       "FA safeguarding regulations built‑in"
     ]
+  },
+  {
+    "title": "Payment Integration",
+    "description": "Seamless GoCardless payment links with FAN references for subscriptions, kits, and tournament fees.",
+    "details": [
+      "Generate traceable payment links with FAN references",
+      "GoCardless integration for direct debit payments",
+      "No personal data stored—references only",
+      "Instant bank statement reconciliation",
+      "Treasurer dashboard for payment tracking"
+    ]
+  },
+  {
+    "title": "Club Communication",
+    "description": "Announcements, team news, and parent notifications through email and in‑app messaging.",
+    "details": [
+      "Team‑specific announcements and news",
+      "Email notifications for fixtures and updates",
+      "Parent communication channels",
+      "Volunteer coordination tools",
+      "Mobile‑friendly messaging interface"
+    ]
   }
 ]

@@ -9,7 +9,7 @@ import type { ClubFeed, LiveResult, LiveFixture } from '../types';
 const FORM_GAMES = 5;
 
 function isYoungAgeGroup(teamName: string): boolean {
-  const youngPattern = /\b(U[0-9]|U1[0-2])\b/;
+  const youngPattern = /\b(U[78])(s?)\b/i;
   return youngPattern.test(teamName);
 }
 

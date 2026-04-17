@@ -1,5 +1,5 @@
 import { Title, Text, Button, Group, SimpleGrid, Paper, ThemeIcon, Stack, Container, Anchor, List, Box, BackgroundImage, Overlay, Flex, Image, Badge } from '@mantine/core';
-import { IconCheck, IconBrandGithub, IconCalendar, IconRocket, IconCode, IconMail, IconArrowRight, IconBrandGoogle, IconCloud, IconDeviceDesktop, IconUsers, IconShield } from '@tabler/icons-react';
+import { IconCheck, IconBrandGithub, IconCalendar, IconRocket, IconCode, IconMail, IconArrowRight, IconBrandGoogle, IconCloud, IconDeviceDesktop, IconUsers, IconShield, IconCreditCard, IconMessage } from '@tabler/icons-react';
 import type { AppData } from '../types';
 import { tablerIcon } from '../utils/icons';
 import { DemoSearch } from '../components/DemoSearch';
@@ -168,12 +168,14 @@ export function HomePage({ data }: Props) {
                  >
                   <Stack gap="md">
                     <Group>
-                      <ThemeIcon size={48} radius="lg" variant="light" color="green.6">
-                        {i === 0 && <IconUsers size={24} />}
-                        {i === 1 && <IconCalendar size={24} />}
-                        {i === 2 && <IconDeviceDesktop size={24} />}
-                        {i === 3 && <IconShield size={24} />}
-                      </ThemeIcon>
+                       <ThemeIcon size={48} radius="lg" variant="light" color="green.5">
+                         {i === 0 && <IconUsers size={24} />}
+                         {i === 1 && <IconCalendar size={24} />}
+                         {i === 2 && <IconDeviceDesktop size={24} />}
+                         {i === 3 && <IconShield size={24} />}
+                         {i === 4 && <IconCreditCard size={24} />}
+                         {i === 5 && <IconMessage size={24} />}
+                       </ThemeIcon>
                       <Title order={3} size="h4">{feature.title}</Title>
                     </Group>
                     <Text c="dimmed">{feature.description}</Text>
@@ -232,7 +234,7 @@ export function HomePage({ data }: Props) {
             <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="lg" mt="xl">
                <Paper p="md" radius="lg" withBorder style={{ borderColor: 'var(--mantine-color-gray-2)', background: 'white' }}>
                 <Stack gap="xs" align="center">
-                  <ThemeIcon size={48} radius="lg" variant="light" color="green.6">
+                  <ThemeIcon size={48} radius="lg" variant="light" color="green.5">
                     <IconCalendar size={24} />
                   </ThemeIcon>
                   <Text fw={600} ta="center">Live Fixtures</Text>
@@ -241,7 +243,7 @@ export function HomePage({ data }: Props) {
               </Paper>
                <Paper p="md" radius="lg" withBorder style={{ borderColor: 'var(--mantine-color-gray-2)', background: 'white' }}>
                 <Stack gap="xs" align="center">
-                  <ThemeIcon size={48} radius="lg" variant="light" color="green.6">
+                  <ThemeIcon size={48} radius="lg" variant="light" color="green.5">
                     <IconUsers size={24} />
                   </ThemeIcon>
                   <Text fw={600} ta="center">Multi‑Team Support</Text>
@@ -250,7 +252,7 @@ export function HomePage({ data }: Props) {
               </Paper>
                <Paper p="md" radius="lg" withBorder style={{ borderColor: 'var(--mantine-color-gray-2)', background: 'white' }}>
                 <Stack gap="xs" align="center">
-                  <ThemeIcon size={48} radius="lg" variant="light" color="green.6">
+                  <ThemeIcon size={48} radius="lg" variant="light" color="green.5">
                     <IconBrandGoogle size={24} />
                   </ThemeIcon>
                   <Text fw={600} ta="center">Calendar Sync</Text>
@@ -294,7 +296,7 @@ export function HomePage({ data }: Props) {
                   <Stack gap="md">
                     <Group justify="space-between">
                       <Group>
-                       <ThemeIcon size={48} radius="lg" variant="light" color="green.6">
+                       <ThemeIcon size={48} radius="lg" variant="light" color="green.5">
                           <IconBrandGithub size={24} />
                         </ThemeIcon>
                         <Title order={3} size="h4">{repo.name}</Title>

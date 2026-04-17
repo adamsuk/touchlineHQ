@@ -20,11 +20,15 @@ export function TreasurerTool() {
     { value: 'OTHER', label: 'Other' },
   ];
 
+  const getReference = () => {
+    if (!team || !fan || !paymentType) return '';
+    return `${team.replace(/\s+/g, '').toUpperCase()}-${fan}-${paymentType}`;
+  };
+
   const generateLink = () => {
-    if (!team || !fan) return;
-    const reference = `${team.toUpperCase()}-${fan}-${paymentType}`;
-    // Mock payment link (would integrate with GoCardless in production)
-    const mockLink = `https://pay.gocardless.com/brt/${reference}`;
+    const ref = getReference();
+    if (!ref) return;
+    const mockLink = `https://pay.gocardless.com/brt/${ref}`;
     setGeneratedLink(mockLink);
     setCopied(false);
   };
@@ -39,7 +43,7 @@ export function TreasurerTool() {
     <Paper p="xl" radius="lg" withBorder style={{ borderColor: 'var(--mantine-color-gray-2)', background: 'white' }}>
       <Stack gap="lg">
         <Group>
-           <IconCreditCard size={32} color="var(--mantine-color-green-6)" />
+           <IconCreditCard size={32} color="var(--mantine-color-green-5)" />
           <Title order={2} size="h3" c="green.8">Treasurer's Tool</Title>
         </Group>
         
@@ -113,7 +117,7 @@ export function TreasurerTool() {
               <Stack gap="xs">
                 <Group justify="space-between">
                   <Badge color="green" variant="light">Reference Format</Badge>
-                  <Code fw={700}>{`${team.toUpperCase()}-${fan}-${paymentType}`}</Code>
+                  <Code fw={700}>{getReference()}</Code>
                 </Group>
                 <Box style={{ wordBreak: 'break-all' }}>
                   <Text size="sm" c="dimmed">Payment Link:</Text>
@@ -145,7 +149,7 @@ export function TreasurerTool() {
             <Alert icon={<IconReceipt size={16} />} color="blue" variant="light" radius="md">
               <Text size="sm">
                 <strong>How it works:</strong> Share this link with parents/players. When they pay, the bank statement will show the reference{' '}
-                <Code>{`${team.toUpperCase()}-${fan}-${paymentType}`}</Code>, making reconciliation instant.
+                <Code>{getReference()}</Code>, making reconciliation instant.
               </Text>
             </Alert>
           </Stack>
