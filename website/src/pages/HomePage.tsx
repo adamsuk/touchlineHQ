@@ -30,7 +30,7 @@ export function HomePage({ data }: Props) {
           >
             <Stack gap="xl" style={{ flex: 1, minWidth: 300, maxWidth: 600 }}>
               <div>
-                <Text size="sm" fw={600} c="green.8" tt="uppercase" mb="xs">Whitelabel Platform</Text>
+                <Text size="sm" fw={600} c="green.8" tt="uppercase" mb="xs">Custom Platform</Text>
                 <Title order={1} size="3.5rem" lh={1.1} mb="md">
                   Professional websites for{' '}
                   <Text component="span" c="green.8" inherit>grassroots football clubs</Text>
@@ -146,7 +146,7 @@ export function HomePage({ data }: Props) {
       </Box>
 
       {/* Features Section */}
-      <Box id="features" py="xl" style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #f7fdf9 100%)' }}>
+      <Box id="features" py="xl" style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #f7fdf9 100%)', borderRadius: 'lg' }}>
         <Container size="lg">
           <Stack gap="xl">
             <div>
@@ -204,7 +204,7 @@ export function HomePage({ data }: Props) {
       </Box>
 
       {/* Integration Demo */}
-      <Box id="demo" py="xl" style={{ background: 'linear-gradient(135deg, #f7fdf9 0%, #e6f9ee 100%)' }}>
+      <Box id="demo" py="xl" style={{ background: 'linear-gradient(135deg, #f7fdf9 0%, #e6f9ee 100%)', borderRadius: 'lg' }}>
         <Container size="lg">
           <Stack gap="xl">
             <div>
@@ -330,7 +330,7 @@ export function HomePage({ data }: Props) {
       </Box>
 
       {/* Contact Section */}
-      <Box id="contact" py="xl" style={{ background: 'linear-gradient(135deg, #1a2332 0%, #273347 100%)' }}>
+      <Box id="contact" py="xl" style={{ background: 'linear-gradient(135deg, #1a2332 0%, #273347 100%)', borderRadius: 'lg' }}>
         <Container size="lg">
           <Stack gap="xl" align="center">
             <div>

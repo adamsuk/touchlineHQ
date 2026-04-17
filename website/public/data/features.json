@@ -12,7 +12,7 @@
   },
   {
     "title": "Live Fixtures & Results",
-    "description": "Automatic integration with FA Full-Time via our open source fulltimeCalendar scraper.",
+    "description": "Automatic integration with FA Full-Time via our open source fulltimeCalendar integration.",
     "details": [
       "Daily automated fixture updates",
       "Results with goal scorers and match statistics",
@@ -48,7 +48,7 @@
     "description": "Built on our open source projects — transparent, extensible, and community‑driven.",
     "details": [
       "ELBantams: React/TypeScript club website platform",
-      "fulltimeCalendar: Python scraper for FA Full-Time data",
+      "fulltimeCalendar: Python integration for FA Full-Time data",
       "MIT licensed — use, modify, redistribute",
       "Active development and community support",
       "Contributions welcome"

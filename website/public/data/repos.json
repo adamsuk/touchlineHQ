@@ -14,11 +14,11 @@
   },
   {
     "name": "fulltimeCalendar",
-    "description": "Python scraper that generates ICS calendar files and JSON feeds from FA Full-Time fixture data.",
+    "description": "Python integration that generates ICS calendar files and JSON feeds from FA Full-Time fixture data.",
     "url": "https://github.com/adamsuk/fulltimeCalendar",
     "tech": ["Python", "Playwright", "BeautifulSoup", "GitHub Actions"],
     "features": [
-      "Daily automated scraping via Tor proxy",
+      "Daily automated data collection",
       "ICS calendars for each team",
       "JSON feeds for fixtures, results, clubs",
       "Team name normalization & club inference",
