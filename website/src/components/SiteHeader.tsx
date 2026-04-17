@@ -34,12 +34,12 @@ export function SiteHeader({ club }: Props) {
           <Text
             component={Link}
             to="/"
+            fw={700}
             size="lg"
-            c="#ffffff"
-            style={{ textDecoration: 'none', whiteSpace: 'nowrap', fontFamily: 'Inter', lineHeight: 1 }}
+            c="var(--mantine-primary-color-filled)"
+            style={{ textDecoration: 'none', whiteSpace: 'nowrap' }}
           >
-            <span style={{ fontWeight: 700 }}>touchline</span>
-            <span style={{ fontWeight: 300 }}>HQ</span>
+            {club.name}
           </Text>
           <Text size="xs" c="dimmed" style={{ lineHeight: 1 }}>Grassroots, Streamlined.</Text>
         </Stack>

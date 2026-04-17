@@ -36,11 +36,11 @@ export function TreasurerTool() {
   };
 
   return (
-    <Paper p="xl" radius="lg" withBorder style={{ borderColor: 'var(--mantine-color-navy-2)', background: 'white' }}>
+    <Paper p="xl" radius="lg" withBorder style={{ borderColor: 'var(--mantine-color-gray-2)', background: 'white' }}>
       <Stack gap="lg">
         <Group>
-          <IconCreditCard size={32} color="var(--mantine-color-green-5)" />
-          <Title order={2} size="h3" c="navy.7">Treasurer's Tool</Title>
+           <IconCreditCard size={32} color="var(--mantine-color-green-6)" />
+          <Title order={2} size="h3" c="green.8">Treasurer's Tool</Title>
         </Group>
         
         <Text c="dimmed">
@@ -94,7 +94,7 @@ export function TreasurerTool() {
           <Button 
             onClick={generateLink}
             disabled={!team || !fan}
-            color="green.5"
+            color="green.6"
             size="lg"
             radius="lg"
             leftSection={<IconReceipt size={20} />}
@@ -109,7 +109,7 @@ export function TreasurerTool() {
             <Divider />
             <Title order={3} size="h4">Your Traceable Payment Link</Title>
             
-            <Paper p="md" radius="md" withBorder style={{ background: 'var(--mantine-color-navy-0)' }}>
+            <Paper p="md" radius="md" withBorder style={{ background: 'var(--mantine-color-gray-0)' }}>
               <Stack gap="xs">
                 <Group justify="space-between">
                   <Badge color="green" variant="light">Reference Format</Badge>
@@ -126,7 +126,7 @@ export function TreasurerTool() {
               <Button 
                 onClick={copyToClipboard}
                 variant="light"
-                color="navy"
+                color="gray"
                 leftSection={copied ? <IconCheck size={16} /> : <IconCopy size={16} />}
               >
                 {copied ? 'Copied!' : 'Copy Link'}
@@ -136,7 +136,7 @@ export function TreasurerTool() {
                 href={generatedLink}
                 target="_blank"
                 variant="outline"
-                color="green.5"
+            color="green.6"
               >
                 Open Payment Page
               </Button>

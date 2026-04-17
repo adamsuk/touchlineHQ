@@ -16,7 +16,7 @@ export function HomePage({ data }: Props) {
       <Box 
         style={{ 
           minHeight: '100vh',
-          background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)',
+          background: 'linear-gradient(135deg, #f7fdf9 0%, #e6f9ee 100%)',
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -31,8 +31,8 @@ export function HomePage({ data }: Props) {
           >
             <Stack gap="xl" style={{ flex: 1, minWidth: 300, maxWidth: 600 }}>
               <div>
-                <Text size="sm" fw={600} c="green.5" tt="uppercase" mb="xs">Grassroots Football Platform</Text>
-                <Title order={1} size="3.5rem" lh={1.1} mb="md" c="navy.7">
+                <Text size="sm" fw={600} c="green.8" tt="uppercase" mb="xs">Grassroots Football Platform</Text>
+                <Title order={1} size="3.5rem" lh={1.1} mb="md">
                   {club.hero.title}
                 </Title>
                 <Text size="xl" c="dimmed" mb="xl">
@@ -46,8 +46,7 @@ export function HomePage({ data }: Props) {
                   leftSection={<IconCalendar size={20} />}
                   size="lg"
                   radius="xl"
-                  color="green.5"
-                  variant="filled"
+                  color="green.6"
                 >
                   {club.hero.cta}
                 </Button>
@@ -58,129 +57,74 @@ export function HomePage({ data }: Props) {
                   leftSection={<IconDeviceDesktop size={20} />}
                   size="lg"
                   radius="xl"
-                  color="navy.7"
+                  color="green.6"
                 >
                   View Sample Club
                 </Button>
               </Group>
               <Group gap="xl" mt="xl">
                 <Stack gap={4}>
-                  <Text fw={700} size="lg" c="navy.7">100%</Text>
+                   <Text fw={700} size="lg">100%</Text>
                   <Text size="sm" c="dimmed">Customizable</Text>
                 </Stack>
                 <Stack gap={4}>
-                  <Text fw={700} size="lg" c="navy.7">Live</Text>
+                   <Text fw={700} size="lg">Live</Text>
                   <Text size="sm" c="dimmed">Fixtures & Results</Text>
                 </Stack>
                 <Stack gap={4}>
-                  <Text fw={700} size="lg" c="navy.7">GDPR</Text>
+                   <Text fw={700} size="lg">GDPR</Text>
                   <Text size="sm" c="dimmed">Compliant</Text>
                 </Stack>
               </Group>
             </Stack>
             <Box style={{ flex: 1, minWidth: 300, position: 'relative' }}>
-              {/* MacBook Mockup */}
               <Box
                 style={{
-                  background: '#1a2b3c',
-                  borderRadius: '1.5rem',
-                  padding: '2rem 2rem 4rem 2rem',
-                  boxShadow: '0 40px 80px rgba(0, 0, 0, 0.15)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
-                  transform: 'perspective(1000px) rotateY(-10deg) rotateX(5deg)',
-                  position: 'relative',
-                  overflow: 'hidden',
+                  background: 'linear-gradient(135deg, #ffffff 0%, #f7fdf9 100%)',
+                  borderRadius: '2rem',
+                  padding: '2rem',
+                   boxShadow: '0 20px 40px rgba(0, 0, 0, 0.08)',
+                  border: '1px solid #e2e8f0',
+                  transform: 'rotate(3deg)',
                 }}
               >
-                {/* MacBook notch */}
-                <Box
-                  style={{
-                    position: 'absolute',
-                    top: '1rem',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: '100px',
-                    height: '6px',
-                    background: '#2d3e4f',
-                    borderRadius: '0 0 10px 10px',
-                    zIndex: 2,
-                  }}
-                />
-                {/* Screen content */}
-                <Box
-                  style={{
-                    background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
-                    borderRadius: '0.75rem',
-                    padding: '1.5rem',
-                    height: '300px',
-                    border: '1px solid #e2e8f0',
-                    overflow: 'hidden',
-                    position: 'relative',
-                  }}
-                >
-                  {/* Dashboard mockup */}
-                  <Stack gap="md">
-                    <Group justify="space-between">
-                      <Group>
-                        <Box style={{ width: '24px', height: '24px', background: 'green.5', borderRadius: '50%' }} />
-                        <Text fw={700} size="sm">Club Dashboard</Text>
-                      </Group>
-                      <Text size="xs" c="dimmed">Live</Text>
-                    </Group>
-                    <SimpleGrid cols={2} spacing="md">
-                      <Paper p="sm" radius="md" withBorder>
-                        <Text fw={700} size="sm">U14 Team</Text>
-                        <Text size="xs" c="dimmed">Next: Sat 2pm</Text>
-                      </Paper>
-                      <Paper p="sm" radius="md" withBorder>
-                        <Text fw={700} size="sm">U12 Team</Text>
-                        <Text size="xs" c="dimmed">Next: Sun 10am</Text>
-                      </Paper>
-                    </SimpleGrid>
-                    <Box style={{ height: '1px', background: '#e2e8f0' }} />
-                    <Group justify="space-between">
-                      <Text size="xs" c="dimmed">Last updated: Today</Text>
-                      <Button size="xs" variant="light" color="green.5">Refresh</Button>
-                    </Group>
-                  </Stack>
-                </Box>
-                {/* MacBook base */}
-                <Box
-                  style={{
-                    position: 'absolute',
-                    bottom: '1rem',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    width: '150px',
-                    height: '8px',
-                    background: '#2d3e4f',
-                    borderRadius: '10px',
-                  }}
-                />
+                <Stack gap="md">
+                  <Group>
+                    <IconDeviceDesktop size={32} color="var(--mantine-color-green-6)" />
+                    <Title order={3}>Club Dashboard</Title>
+                  </Group>
+                  <Text c="dimmed">
+                    Modern club website with team management, fixtures, results, and player profiles.
+                  </Text>
+                  <Group gap="xs" wrap="wrap">
+                    <Button variant="light" size="xs" radius="xl" leftSection={<IconUsers size={12} />}>Teams</Button>
+                    <Button variant="light" size="xs" radius="xl" leftSection={<IconCalendar size={12} />}>Fixtures</Button>
+                    <Button variant="light" size="xs" radius="xl" leftSection={<IconCloud size={12} />}>Cloud Hosted</Button>
+                  </Group>
+                </Stack>
               </Box>
-              {/* Floating element */}
               <Box
                 style={{
                   position: 'absolute',
-                  bottom: '-30px',
-                  right: '-30px',
-                  background: 'linear-gradient(135deg, #39ff14 0%, #32e012 100%)',
-                  borderRadius: '1rem',
-                  padding: '1rem',
-                  boxShadow: '0 20px 40px rgba(57, 255, 20, 0.2)',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
-                  transform: 'rotate(5deg)',
-                  width: '50%',
-                  zIndex: 1,
+                  top: '40%',
+                  left: '-20%',
+                  background: 'linear-gradient(135deg, #ffffff 0%, #f7fdf9 100%)',
+                  borderRadius: '1.5rem',
+                  padding: '1.5rem',
+                   boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
+                  border: '1px solid #e2e8f0',
+                  transform: 'rotate(-5deg)',
+                  width: '70%',
+                  zIndex: -1,
                 }}
               >
-                <Stack gap="xs">
+                <Stack gap="sm">
                   <Group>
-                    <IconCalendar size={20} color="white" />
-                    <Text fw={600} c="white" size="sm">Fixture Sync</Text>
+                    <IconBrandGoogle size={24} color="var(--mantine-color-green-6)" />
+                    <Text fw={600}>Google Calendar Sync</Text>
                   </Group>
-                  <Text size="xs" c="white" style={{ opacity: 0.9 }}>
-                    Live updates from FA Full-Time
+                  <Text size="sm" c="dimmed">
+                    Automatic fixture sync with Google Calendar.
                   </Text>
                 </Stack>
               </Box>
@@ -195,45 +139,36 @@ export function HomePage({ data }: Props) {
             right: 0,
             bottom: 0,
             left: 0,
-            backgroundImage: 'radial-gradient(circle at 20% 80%, rgba(57, 255, 20, 0.03) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(26, 43, 60, 0.05) 0%, transparent 50%)',
+            backgroundImage: 'radial-gradient(circle at 20% 80%, rgba(34, 197, 94, 0.03) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.01) 0%, transparent 50%)',
             zIndex: 1,
           }}
         />
       </Box>
 
       {/* Features Section */}
-      <Box id="features" py="xl" style={{ background: 'linear-gradient(to bottom, #f8f9fa 0%, #e9ecef 100%)', borderRadius: 'lg' }}>
+       <Box id="features" py="xl" style={{ background: 'linear-gradient(to bottom, #ffffff 0%, #f7fdf9 100%)', borderRadius: 'lg' }}>
         <Container size="lg">
           <Stack gap="xl">
             <div>
-              <Text size="sm" fw={600} c="green.5" tt="uppercase" ta="center" mb="xs">Platform Features</Text>
-              <Title order={2} ta="center" mb="md" c="navy.7">Built for Grassroots Clubs</Title>
+               <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center" mb="xs">Platform Features</Text>
+               <Title order={2} ta="center" mb="md">Built for Grassroots Clubs</Title>
               <Text size="lg" c="dimmed" ta="center" maw={800} mx="auto">
                 Everything your club needs to manage teams, fixtures, and communications—all in one secure platform.
               </Text>
             </div>
-            <SimpleGrid cols={{ base: 1, sm: 2, lg: 2 }} spacing="lg">
+             <SimpleGrid cols={{ base: 1, sm: 2, lg: 3 }} spacing="lg">
               {features.map((feature, i) => (
                  <Paper 
-                  key={i} 
-                  p="xl" 
-                  radius="lg" 
-                  withBorder
-                  styles={{
-                    root: {
-                      borderColor: 'var(--mantine-color-gray-2)',
-                      transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                      '&:hover': {
-                        transform: 'translateY(-4px)',
-                        boxShadow: 'var(--mantine-shadow-lg)',
-                      }
-                    }
-                  }}
-                  h="100%"
-                >
+                   key={i} 
+                   p="xl" 
+                   radius="lg" 
+                   withBorder
+                   style={{ borderColor: 'var(--mantine-color-gray-2)', background: 'white' }}
+                   h="100%"
+                 >
                   <Stack gap="md">
                     <Group>
-                      <ThemeIcon size={48} radius="lg" variant="light" color="green.5">
+                      <ThemeIcon size={48} radius="lg" variant="light" color="green.6">
                         {i === 0 && <IconUsers size={24} />}
                         {i === 1 && <IconCalendar size={24} />}
                         {i === 2 && <IconDeviceDesktop size={24} />}
@@ -258,11 +193,11 @@ export function HomePage({ data }: Props) {
       </Box>
 
       {/* Treasurer's Tool */}
-      <Box id="treasurer" py="xl" style={{ background: 'linear-gradient(135deg, #1a2b3c 0%, #273347 100%)', borderRadius: 'lg' }}>
+       <Box id="treasurer" py="xl" style={{ background: 'linear-gradient(135deg, #1a2332 0%, #273347 100%)', borderRadius: 'lg' }}>
         <Container size="lg">
           <Stack gap="xl">
             <div>
-              <Text size="sm" fw={600} c="green.5" tt="uppercase" ta="center" mb="xs">Financial Tools</Text>
+              <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center" mb="xs">Financial Tools</Text>
               <Title order={2} ta="center" mb="md" c="white">Traceable Payments for Treasurers</Title>
               <Text size="lg" c="gray.4" ta="center" maw={800} mx="auto">
                 Generate payment links with FAN references for instant bank reconciliation—no personal data stored.
@@ -274,12 +209,12 @@ export function HomePage({ data }: Props) {
       </Box>
 
       {/* Integration Demo */}
-      <Box id="demo" py="xl" style={{ background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)', borderRadius: 'lg' }}>
+       <Box id="demo" py="xl" style={{ background: 'linear-gradient(135deg, #f7fdf9 0%, #e6f9ee 100%)', borderRadius: 'lg' }}>
         <Container size="lg">
           <Stack gap="xl">
             <div>
-               <Text size="sm" fw={600} c="green.5" tt="uppercase" ta="center" mb="xs">Live Demo</Text>
-               <Title order={2} ta="center" mb="md" c="navy.7">See it in action</Title>
+               <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center" mb="xs">Live Demo</Text>
+               <Title order={2} ta="center" mb="md">See it in action</Title>
               <Text size="lg" c="dimmed" ta="center" maw={800} mx="auto">
                 Search for any grassroots football club to see live fixtures, results, and standings powered by our real-time data integration.
               </Text>
@@ -297,7 +232,7 @@ export function HomePage({ data }: Props) {
             <SimpleGrid cols={{ base: 1, sm: 3 }} spacing="lg" mt="xl">
                <Paper p="md" radius="lg" withBorder style={{ borderColor: 'var(--mantine-color-gray-2)', background: 'white' }}>
                 <Stack gap="xs" align="center">
-                  <ThemeIcon size={48} radius="lg" variant="light" color="green.5">
+                  <ThemeIcon size={48} radius="lg" variant="light" color="green.6">
                     <IconCalendar size={24} />
                   </ThemeIcon>
                   <Text fw={600} ta="center">Live Fixtures</Text>
@@ -306,7 +241,7 @@ export function HomePage({ data }: Props) {
               </Paper>
                <Paper p="md" radius="lg" withBorder style={{ borderColor: 'var(--mantine-color-gray-2)', background: 'white' }}>
                 <Stack gap="xs" align="center">
-                  <ThemeIcon size={48} radius="lg" variant="light" color="green.5">
+                  <ThemeIcon size={48} radius="lg" variant="light" color="green.6">
                     <IconUsers size={24} />
                   </ThemeIcon>
                   <Text fw={600} ta="center">Multi‑Team Support</Text>
@@ -315,7 +250,7 @@ export function HomePage({ data }: Props) {
               </Paper>
                <Paper p="md" radius="lg" withBorder style={{ borderColor: 'var(--mantine-color-gray-2)', background: 'white' }}>
                 <Stack gap="xs" align="center">
-                  <ThemeIcon size={48} radius="lg" variant="light" color="green.5">
+                  <ThemeIcon size={48} radius="lg" variant="light" color="green.6">
                     <IconBrandGoogle size={24} />
                   </ThemeIcon>
                   <Text fw={600} ta="center">Calendar Sync</Text>
@@ -328,12 +263,12 @@ export function HomePage({ data }: Props) {
       </Box>
 
       {/* Open Source Section */}
-      <Box id="opensource" py="xl" style={{ background: 'linear-gradient(to bottom, #f8f9fa 0%, #ffffff 100%)', borderRadius: 'lg' }}>
+       <Box id="opensource" py="xl" style={{ background: 'transparent', borderRadius: 'lg' }}>
         <Container size="lg">
           <Stack gap="xl">
             <div>
-               <Text size="sm" fw={600} c="green.5" tt="uppercase" ta="center" mb="xs">Open Source</Text>
-               <Title order={2} ta="center" mb="md" c="navy.7">Built on transparent foundations</Title>
+               <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center" mb="xs">Open Source</Text>
+               <Title order={2} ta="center" mb="md">Built on transparent foundations</Title>
               <Text size="lg" c="dimmed" ta="center" maw={800} mx="auto">
                 Our platform is built on open-source projects that you can inspect, contribute to, and even self-host.
               </Text>
@@ -359,7 +294,7 @@ export function HomePage({ data }: Props) {
                   <Stack gap="md">
                     <Group justify="space-between">
                       <Group>
-                       <ThemeIcon size={48} radius="lg" variant="light" color="green.5">
+                       <ThemeIcon size={48} radius="lg" variant="light" color="green.6">
                           <IconBrandGithub size={24} />
                         </ThemeIcon>
                         <Title order={3} size="h4">{repo.name}</Title>
@@ -384,7 +319,7 @@ export function HomePage({ data }: Props) {
                       href={repo.url}
                       target="_blank"
                       variant="outline"
-                      color="green.5"
+                      color="green.6"
                       fullWidth
                       mt="sm"
                       radius="lg"
@@ -400,11 +335,11 @@ export function HomePage({ data }: Props) {
       </Box>
 
       {/* Contact Section */}
-      <Box id="contact" py="xl" style={{ background: 'linear-gradient(135deg, #1a2b3c 0%, #273347 100%)', borderRadius: 'lg' }}>
+       <Box id="contact" py="xl" style={{ background: 'linear-gradient(135deg, #1a2332 0%, #273347 100%)', borderRadius: 'lg' }}>
         <Container size="lg">
           <Stack gap="xl" align="center">
             <div>
-               <Text size="sm" fw={600} c="green.5" tt="uppercase" ta="center" mb="xs">Contact</Text>
+               <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center" mb="xs">Contact</Text>
               <Title order={2} ta="center" mb="md" c="white">Ready to get started?</Title>
               <Text size="lg" c="gray.4" ta="center" maw={800} mx="auto">
                 Get in touch to discuss how touchlineHQ can transform your club's online presence.
