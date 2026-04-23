@@ -26,6 +26,12 @@
       .fade-in-up {
         animation: fadeInUp 0.6s ease-out;
       }
+      /* Hide elements on mobile (below 576px) */
+      @media (max-width: 576px) {
+        .hidden-mobile {
+          display: none !important;
+        }
+      }
     </style>
   </head>
   <body>

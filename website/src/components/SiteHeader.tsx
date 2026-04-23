@@ -28,14 +28,14 @@ export function SiteHeader({ club }: Props) {
 
   return (
     <>
-      <Group h="100%" px={{ base: 'sm', sm: 'md' }} justify="space-between" wrap="nowrap">
+      <Group h="100%" px="md" justify="space-between" wrap="nowrap">
         {/* Logo / Brand */}
         <Stack gap={0}>
           <Text
             component={Link}
             to="/"
             fw={700}
-            size={{ base: 'md', sm: 'lg' }}
+            size="lg"
             c="var(--mantine-primary-color-filled)"
             style={{ textDecoration: 'none', whiteSpace: 'nowrap' }}
           >
