@@ -1,6 +1,9 @@
 name: Deploy to GitHub Pages
 
 on:
+  pull_request:
+    branches: [ main ]
+    types: [ opened, synchronize, reopened ]
   workflow_dispatch:
     inputs:
       base_path:
@@ -9,20 +12,25 @@ on:
         default: ''
         type: string
 
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  deployments: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "github-pages-${{ github.head_ref || github.ref_name }}"
+  cancel-in-progress: true
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     environment:
-      name: github-pages
+      name: github-pages-${{ github.head_ref || github.ref_name }}
       url: ${{ steps.deployment.outputs.page_url }}
     
-    permissions:
-      contents: write
-      pages: write
-      id-token: write
-    
-
-      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -30,22 +38,18 @@ jobs:
       - name: Determine base path
         id: base
         run: |
-          echo "Repository name: ${{ github.event.repository.name }}"
-          echo "Input base_path: ${{ github.event.inputs.base_path }}"
-          
           if [ -n "${{ github.event.inputs.base_path }}" ]; then
             BASE_PATH="${{ github.event.inputs.base_path }}"
-            echo "Using input base path: $BASE_PATH"
-            echo "BASE_PATH=$BASE_PATH" >> "$GITHUB_OUTPUT"
-          elif [[ "${{ github.event.repository.name }}" == *.github.io ]]; then
-            BASE_PATH="./"
-            echo "User/organization site detected, using base path: $BASE_PATH"
-            echo "BASE_PATH=$BASE_PATH" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event_name }}" = "pull_request" ]; then
+            # Use branch name as sub-path for PR previews
+            BRANCH_NAME="${{ github.head_ref }}"
+            BASE_PATH="/${{ github.event.repository.name }}/preview/$BRANCH_NAME/"
+            echo "PR preview detected, using base path: $BASE_PATH"
           else
             BASE_PATH="/${{ github.event.repository.name }}/"
-            echo "Project site detected, using base path: $BASE_PATH"
-            echo "BASE_PATH=$BASE_PATH" >> "$GITHUB_OUTPUT"
+            echo "Main deploy, using base path: $BASE_PATH"
           fi
+          echo "BASE_PATH=$BASE_PATH" >> "$GITHUB_OUTPUT"
           
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -75,3 +79,26 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        
+      - name: Comment PR with preview URL
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const baseUrl = '${{ steps.deployment.outputs.page_url }}';
+            const branchName = '${{ github.head_ref }}';
+            const previewUrl = baseUrl;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## 🚀 Preview Deployed
+            
+            | Detail | Value |
+            |---|---|
+            | Branch | \`${branchName}\` |
+            | Preview URL | [${previewUrl}](${previewUrl}) |
+            
+            > Open this URL to see the changes live on your device (including mobile).`
+            });
