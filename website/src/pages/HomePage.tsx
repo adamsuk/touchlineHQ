@@ -24,21 +24,33 @@ export const HomePage = ({ data }: Props) => {
           <Flex 
             align="center" 
             justify="space-between" 
+            direction={{ base: 'column', sm: 'row' }}
             wrap="wrap" 
-            gap="xl" 
-            style={{ minHeight: '100vh', padding: '4rem 0' }}
+            gap={{ base: 'lg', sm: 'xl' }} 
+            style={{ 
+              minHeight: 'calc(100vh - 70px)', 
+              padding: '2rem 0',
+              paddingTop: '1.5rem',
+            }}
           >
-            <Stack gap="xl" style={{ flex: 1, minWidth: 300, maxWidth: 600 }}>
+            <Stack gap={{ base: 'md', sm: 'xl' }} style={{ flex: 1, minWidth: 300, maxWidth: 600 }}>
               <div>
-                <Text size="sm" fw={600} c="green.8" tt="uppercase" mb="xs">Grassroots Football Platform</Text>
-                <Title order={1} size="3.5rem" lh={1.1} mb="md">
+                <Title 
+                  order={1} 
+                  size={{ base: '2rem', sm: '3rem', md: '3.5rem' }} 
+                  lh={1.1} 
+                  mb="md"
+                >
                   {club.hero.title}
                 </Title>
-                <Text size="xl" c="dimmed" mb="xl">
+                <Text size={{ base: 'md', sm: 'xl' }} c="dimmed" mb="xl">
                   {club.hero.subtitle}
                 </Text>
               </div>
-              <Group>
+              <Group 
+                orientation={{ base: 'vertical', sm: 'horizontal' }} 
+                w={{ base: '100%', sm: 'auto' }}
+              >
                 <Button 
                   component="a" 
                   href={`mailto:${contact.email}?subject=Book%20a%20TouchlineHQ%20Demo`}
@@ -46,6 +58,7 @@ export const HomePage = ({ data }: Props) => {
                   size="lg"
                   radius="xl"
                   color="green.6"
+                  fullWidth={{ base: true, sm: false }}
                 >
                   {club.hero.cta}
                 </Button>
@@ -57,11 +70,12 @@ export const HomePage = ({ data }: Props) => {
                   size="lg"
                   radius="xl"
                   color="green.6"
+                  fullWidth={{ base: true, sm: false }}
                 >
                   View Sample Club
                 </Button>
               </Group>
-              <Group gap="xl" mt="xl">
+              <Group gap={{ base: 'md', sm: 'xl' }} mt="xl">
                 <Stack gap={4}>
                    <Text fw={700} size="lg">100%</Text>
                   <Text size="sm" c="dimmed">Customizable</Text>
@@ -76,13 +90,16 @@ export const HomePage = ({ data }: Props) => {
                 </Stack>
               </Group>
             </Stack>
-            <Box style={{ flex: 1, minWidth: 300, position: 'relative' }}>
+            <Box 
+              style={{ flex: 1, minWidth: 280, position: 'relative' }}
+              w={{ base: '100%', sm: 'auto' }}
+            >
               <Box
                 style={{
                   background: 'linear-gradient(135deg, #ffffff 0%, #f7fdf9 100%)',
                   borderRadius: '2rem',
-                  padding: '2rem',
-                   boxShadow: '0 20px 40px rgba(0, 0, 0, 0.08)',
+                  padding: '1.5rem',
+                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.08)',
                   border: '1px solid #e2e8f0',
                   transform: 'rotate(3deg)',
                 }}
@@ -106,15 +123,16 @@ export const HomePage = ({ data }: Props) => {
                 style={{
                   position: 'absolute',
                   top: '40%',
-                  left: '-20%',
+                  left: '-10%',
                   background: 'linear-gradient(135deg, #ffffff 0%, #f7fdf9 100%)',
                   borderRadius: '1.5rem',
                   padding: '1.5rem',
-                   boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
                   border: '1px solid #e2e8f0',
                   transform: 'rotate(-5deg)',
                   width: '70%',
                   zIndex: -1,
+                  display: { base: 'none', sm: 'block' },
                 }}
               >
                 <Stack gap="sm">

@@ -28,20 +28,22 @@ export function SiteHeader({ club }: Props) {
 
   return (
     <>
-      <Group h="100%" px="md" justify="space-between" wrap="nowrap">
+      <Group h="100%" px={{ base: 'sm', sm: 'md' }} justify="space-between" wrap="nowrap">
         {/* Logo / Brand */}
         <Stack gap={0}>
           <Text
             component={Link}
             to="/"
             fw={700}
-            size="lg"
+            size={{ base: 'md', sm: 'lg' }}
             c="var(--mantine-primary-color-filled)"
             style={{ textDecoration: 'none', whiteSpace: 'nowrap' }}
           >
             {club.name}
           </Text>
-          <Text size="xs" c="dimmed" style={{ lineHeight: 1 }}>Grassroots, Streamlined.</Text>
+          <Text size="xs" c="dimmed" style={{ lineHeight: 1.2 }}>
+            {club.tagline}
+          </Text>
         </Stack>
 
         {/* Desktop Navigation Links */}

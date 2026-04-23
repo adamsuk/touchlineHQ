@@ -31,7 +31,7 @@ export const App = () => {
   return (
     <MantineProvider theme={clubTheme}>
       <HashRouter>
-        <AppShell header={{ height: 60 }} padding="md">
+        <AppShell header={{ height: 70 }} padding="md">
           <AppShell.Header>
             <SiteHeader club={data.club} />
           </AppShell.Header>
