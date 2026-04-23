@@ -37,17 +37,7 @@ jobs:
       - name: Determine base path
         id: base
         run: |
-          if [ -n "${{ github.event.inputs.base_path }}" ]; then
-            BASE_PATH="${{ github.event.inputs.base_path }}"
-          elif [ "${{ github.event_name }}" = "pull_request" ]; then
-            # Use branch name as sub-path for PR previews
-            BRANCH_NAME="${{ github.head_ref }}"
-            BASE_PATH="/${{ github.event.repository.name }}/preview/$BRANCH_NAME/"
-            echo "PR preview detected, using base path: $BASE_PATH"
-          else
-            BASE_PATH="/${{ github.event.repository.name }}/"
-            echo "Main deploy, using base path: $BASE_PATH"
-          fi
+          BASE_PATH="./"
           echo "BASE_PATH=$BASE_PATH" >> "$GITHUB_OUTPUT"
           
       - name: Setup Node.js
