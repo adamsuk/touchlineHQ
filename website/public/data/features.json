@@ -1,24 +1,23 @@
 [
   {
     "title": "Professional Team Pages",
-    "description": "Dedicated homes for every squad, from U7s to Seniors, with team photos, coach contacts, and fixture lists.",
+    "description": "Dedicated homes for every squad, from U7s to Seniors, with team information, coach contacts, and fixture lists.",
     "details": [
       "Professional team profiles with coach information",
       "Team‑specific fixture lists and results",
       "Matchday information (venues, kick‑off times)",
-      "No player galleries or personal data storage",
       "FA safeguarding compliant for younger age groups"
     ]
   },
   {
     "title": "Fixture Sync",
-    "description": "Automated, clean lists pulling directly from official FA sources via our fulltimeCalendar integration.",
+    "description": "Automated, clean lists pulling directly from official FA sources via our Full-Time integration.",
     "details": [
       "Live fixtures & results from FA Full‑Time",
       "Automatic daily updates",
       "Google Calendar & iCal integration",
-      "League tables and standings",
-      "Age‑appropriate content filtering"
+      "League form and season WLD (Win, Loss, Draw) counters",
+      "Age‑appropriate fixture filtering"
     ]
   },
   {
@@ -27,9 +26,9 @@
     "details": [
       "Intuitive content management interface",
       "Update news, sponsors, and announcements",
-      "Team management and roster updates",
+      "Team management and club updates",
       "No technical skills required",
-      "Mobile‑friendly volunteer admin"
+      "Mobile‑friendly admin dashboard"
     ]
   },
   {
@@ -39,8 +38,7 @@
       "No personal player data stored",
       "FAN‑based payment references only",
       "Automatic hiding of scores for younger age groups",
-      "Secure, gateway‑only data flow",
-      "FA safeguarding regulations built‑in"
+      "Secure, gateway‑only data flow"
     ]
   },
   {
@@ -48,21 +46,18 @@
     "description": "Seamless GoCardless payment links with FAN references for subscriptions, kits, and tournament fees.",
     "details": [
       "Generate traceable payment links with FAN references",
-      "GoCardless integration for direct debit payments",
-      "No personal data stored—references only",
-      "Instant bank statement reconciliation",
-      "Treasurer dashboard for payment tracking"
+      "GoCardless integration for quick and easy payments",
+      "No personal data stored—references only"
     ]
   },
   {
-    "title": "Club Communication",
-    "description": "Announcements, team news, and parent notifications through email and in‑app messaging.",
+    "title": "Open Source",
+    "description": "Built on a foundation of trust with public code and clear data policies—no hidden fees or locked-in data.",
     "details": [
-      "Team‑specific announcements and news",
-      "Email notifications for fixtures and updates",
-      "Parent communication channels",
-      "Volunteer coordination tools",
-      "Mobile‑friendly messaging interface"
+      "Zero licensing fees or monthly subscriptions",
+      "Publicly auditable open-source codebase",
+      "No vendor lock-in with full data portability",
+      "Privacy-first design with GDPR compliance"
     ]
   }
 ]

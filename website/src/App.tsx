@@ -7,7 +7,7 @@ import { createClubTheme } from './theme';
 import { SiteHeader } from './components/SiteHeader';
 import { HomePage } from './pages/HomePage';
 
-export default function App() {
+export const App = () => {
   const [data, setData] = useState<AppData | null>(null);
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function App() {
           <AppShell.Header>
             <SiteHeader club={data.club} />
           </AppShell.Header>
-          <AppShell.Main>
+          <AppShell.Main p={0}>
             <Routes>
               <Route path="/" element={<HomePage data={data} />} />
               {/* Only one route - any other path redirects to home */}
@@ -47,3 +47,5 @@ export default function App() {
     </MantineProvider>
   );
 }
+
+export default App;

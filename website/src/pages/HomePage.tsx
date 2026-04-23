@@ -1,17 +1,16 @@
-import { Title, Text, Button, Group, SimpleGrid, Paper, ThemeIcon, Stack, Container, Anchor, List, Box, BackgroundImage, Overlay, Flex, Image, Badge } from '@mantine/core';
-import { IconCheck, IconBrandGithub, IconCalendar, IconRocket, IconCode, IconMail, IconArrowRight, IconBrandGoogle, IconCloud, IconDeviceDesktop, IconUsers, IconShield, IconCreditCard, IconMessage } from '@tabler/icons-react';
+import { Title, Text, Button, Group, SimpleGrid, Paper, ThemeIcon, Stack, Container, Anchor, List, Box, Flex, Badge } from '@mantine/core';
+import { IconCheck, IconBrandGithub, IconCalendar, IconCode, IconMail, IconBrandGoogle, IconCloud, IconDeviceDesktop, IconUsers, IconShield, IconCreditCard, IconBrandOpenSource } from '@tabler/icons-react';
 import type { AppData } from '../types';
-import { tablerIcon } from '../utils/icons';
 import { DemoSearch } from '../components/DemoSearch';
 import { TreasurerTool } from '../components/TreasurerTool';
 
 interface Props { data: AppData }
 
-export function HomePage({ data }: Props) {
-  const { club, features, repos, contact, clubFeed, liveTeams } = data;
+export const HomePage = ({ data }: Props) => {
+  const { club, features, repos, contact, clubFeed } = data;
 
   return (
-    <Stack gap="xl">
+    <Stack>
       {/* Hero Section */}
       <Box 
         style={{ 
@@ -174,7 +173,7 @@ export function HomePage({ data }: Props) {
                          {i === 2 && <IconDeviceDesktop size={24} />}
                          {i === 3 && <IconShield size={24} />}
                          {i === 4 && <IconCreditCard size={24} />}
-                         {i === 5 && <IconMessage size={24} />}
+                         {i === 5 && <IconBrandOpenSource size={24} />}
                        </ThemeIcon>
                       <Title order={3} size="h4">{feature.title}</Title>
                     </Group>
@@ -306,7 +305,7 @@ export function HomePage({ data }: Props) {
                     <Text c="dimmed">{repo.description}</Text>
                     <Group gap="xs" wrap="wrap">
                       {repo.tech.map((tech) => (
-                        <Button key={tech} variant="light" size="xs" radius="xl" color="green.6">{tech}</Button>
+                        <Button key={tech} variant="light" size="xs" radius="xl" color="green.5">{tech}</Button>
                       ))}
                     </Group>
                     <List spacing="xs" size="sm">
@@ -341,7 +340,7 @@ export function HomePage({ data }: Props) {
         <Container size="lg">
           <Stack gap="xl" align="center">
             <div>
-               <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center" mb="xs">Contact</Text>
+              <Text size="sm" fw={600} c="green.5" tt="uppercase" ta="center" mb="xs">Contact</Text>
               <Title order={2} ta="center" mb="md" c="white">Ready to get started?</Title>
               <Text size="lg" c="gray.4" ta="center" maw={800} mx="auto">
                 Get in touch to discuss how touchlineHQ can transform your club's online presence.

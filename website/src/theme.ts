@@ -22,7 +22,7 @@ export function createClubTheme(primaryColor = 'green') {
         '#14532d',
       ],
     },
-    primaryShade: { light: 5, dark: 7 },
+    primaryShade: { light: 6, dark: 8 },
     defaultRadius: 'lg',
     spacing: {
       xs: '0.5rem',
