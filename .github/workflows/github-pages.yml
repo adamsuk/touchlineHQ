@@ -5,66 +5,37 @@ on:
     branches: [ main ]
     types: [ opened, synchronize, reopened ]
   workflow_dispatch:
-    inputs:
-      base_path:
-        description: 'Base path for GitHub Pages (override auto-detection)'
-        required: false
-        default: ''
-        type: string
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment per branch
 concurrency:
   group: "github-pages-${{ github.head_ref || github.ref_name }}"
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     environment:
       name: github-pages-${{ github.head_ref || github.ref_name }}
       url: ${{ steps.deployment.outputs.page_url }}
-    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      
-      - name: Determine base path
-        id: base
-        run: |
-          BASE_PATH="./"
-          echo "BASE_PATH=$BASE_PATH" >> "$GITHUB_OUTPUT"
-          
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: 20
+          cache: npm
           cache-dependency-path: website/package-lock.json
-          
-      - name: Install dependencies
-        run: npm ci
+      - run: npm ci
         working-directory: website
-        
-      - name: Build project
-        run: npm run build
+      - run: npm run build
         working-directory: website
         env:
-          VITE_BASE_PATH: ${{ steps.base.outputs.BASE_PATH }}
-        
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+          VITE_BASE_PATH: './'
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: website/dist
-          
-      - name: Deploy to GitHub Pages
-        id: deployment
+      - id: deployment
         uses: actions/deploy-pages@v4
