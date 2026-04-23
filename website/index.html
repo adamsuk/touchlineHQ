@@ -26,10 +26,18 @@
       .fade-in-up {
         animation: fadeInUp 0.6s ease-out;
       }
-      /* Hide elements on mobile (below 576px) */
+      /* Hide elements on mobile */
       @media (max-width: 576px) {
         .hidden-mobile {
           display: none !important;
+        }
+        .hero-btn-full {
+          width: 100% !important;
+        }
+      }
+      @media (min-width: 577px) {
+        .hero-btn-full {
+          width: auto !important;
         }
       }
     </style>

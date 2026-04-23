@@ -47,9 +47,7 @@ export const HomePage = ({ data }: Props) => {
                   {club.hero.subtitle}
                 </Text>
               </div>
-              <Group
-                style={{ flexWrap: 'wrap' }}
-              >
+              <Group>
                 <Button 
                   component="a" 
                   href={`mailto:${contact.email}?subject=Book%20a%20TouchlineHQ%20Demo`}
@@ -57,9 +55,7 @@ export const HomePage = ({ data }: Props) => {
                   size="lg"
                   radius="xl"
                   color="green.6"
-                  style={{ 
-                    '@media (max-width: 576px)': { width: '100%' }
-                  }}
+                  className="hero-btn-full"
                 >
                   {club.hero.cta}
                 </Button>
@@ -71,14 +67,12 @@ export const HomePage = ({ data }: Props) => {
                   size="lg"
                   radius="xl"
                   color="green.6"
-                  style={{ 
-                    '@media (max-width: 576px)': { width: '100%' }
-                  }}
+                  className="hero-btn-full"
                 >
                   View Sample Club
                 </Button>
               </Group>
-              <Group gap="xl" mt="xl" style={{ flexWrap: 'wrap' }}>
+              <Group gap="xl" mt="xl">
                 <Stack gap={4}>
                    <Text fw={700} size="lg">100%</Text>
                   <Text size="sm" c="dimmed">Customizable</Text>
