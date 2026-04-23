@@ -26,28 +26,30 @@ export const HomePage = ({ data }: Props) => {
             justify="space-between" 
             direction={{ base: 'column', sm: 'row' }}
             wrap="wrap" 
-            gap={{ base: 'lg', sm: 'xl' }} 
+            gap="xl"
             style={{ 
               minHeight: 'calc(100vh - 70px)', 
-              padding: '2rem 0',
               paddingTop: '1.5rem',
+              paddingBottom: '2rem',
             }}
           >
-            <Stack gap={{ base: 'md', sm: 'xl' }} style={{ flex: 1, minWidth: 300, maxWidth: 600 }}>
+            <Stack gap="xl" style={{ flex: 1, minWidth: 300, maxWidth: 600 }}>
               <div>
                 <Title 
                   order={1} 
-                  size={{ base: '2rem', sm: '3rem', md: '3.5rem' }} 
+                  size="3.5rem"
                   lh={1.1} 
                   mb="md"
                 >
                   {club.hero.title}
                 </Title>
-                <Text size={{ base: 'md', sm: 'xl' }} c="dimmed" mb="xl">
+                <Text size="xl" c="dimmed" mb="xl">
                   {club.hero.subtitle}
                 </Text>
               </div>
-              <Group w={{ base: '100%', sm: 'auto' }}>
+              <Group
+                style={{ flexWrap: 'wrap' }}
+              >
                 <Button 
                   component="a" 
                   href={`mailto:${contact.email}?subject=Book%20a%20TouchlineHQ%20Demo`}
@@ -55,7 +57,9 @@ export const HomePage = ({ data }: Props) => {
                   size="lg"
                   radius="xl"
                   color="green.6"
-                  fullWidth={{ base: true, sm: false }}
+                  style={{ 
+                    '@media (max-width: 576px)': { width: '100%' }
+                  }}
                 >
                   {club.hero.cta}
                 </Button>
@@ -67,12 +71,14 @@ export const HomePage = ({ data }: Props) => {
                   size="lg"
                   radius="xl"
                   color="green.6"
-                  fullWidth={{ base: true, sm: false }}
+                  style={{ 
+                    '@media (max-width: 576px)': { width: '100%' }
+                  }}
                 >
                   View Sample Club
                 </Button>
               </Group>
-              <Group gap={{ base: 'md', sm: 'xl' }} mt="xl">
+              <Group gap="xl" mt="xl" style={{ flexWrap: 'wrap' }}>
                 <Stack gap={4}>
                    <Text fw={700} size="lg">100%</Text>
                   <Text size="sm" c="dimmed">Customizable</Text>
@@ -87,10 +93,7 @@ export const HomePage = ({ data }: Props) => {
                 </Stack>
               </Group>
             </Stack>
-            <Box 
-              style={{ flex: 1, minWidth: 280, position: 'relative' }}
-              w={{ base: '100%', sm: 'auto' }}
-            >
+            <Box style={{ flex: 1, minWidth: 280, position: 'relative' }}>
               <Box
                 style={{
                   background: 'linear-gradient(135deg, #ffffff 0%, #f7fdf9 100%)',
@@ -117,6 +120,7 @@ export const HomePage = ({ data }: Props) => {
                 </Stack>
               </Box>
               <Box
+                className="hidden-mobile"
                 style={{
                   position: 'absolute',
                   top: '40%',
@@ -129,7 +133,6 @@ export const HomePage = ({ data }: Props) => {
                   transform: 'rotate(-5deg)',
                   width: '70%',
                   zIndex: -1,
-                  display: { base: 'none', sm: 'block' },
                 }}
               >
                 <Stack gap="sm">
