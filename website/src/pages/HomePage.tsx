@@ -47,10 +47,7 @@ export const HomePage = ({ data }: Props) => {
                   {club.hero.subtitle}
                 </Text>
               </div>
-              <Group 
-                orientation={{ base: 'vertical', sm: 'horizontal' }} 
-                w={{ base: '100%', sm: 'auto' }}
-              >
+              <Group w={{ base: '100%', sm: 'auto' }}>
                 <Button 
                   component="a" 
                   href={`mailto:${contact.email}?subject=Book%20a%20TouchlineHQ%20Demo`}
