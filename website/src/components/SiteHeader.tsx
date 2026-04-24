@@ -1,4 +1,4 @@
-import { Group, Text, ActionIcon, Button, Burger, Drawer, Stack, Box } from '@mantine/core';
+import { Group, Text, ActionIcon, Button, Burger, Drawer, Stack, Box, Image } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconBrandGithub, IconBrandTwitter, IconBrandLinkedin, IconList, IconCode, IconCalendar, IconMail } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
@@ -31,21 +31,24 @@ export function SiteHeader({ club }: Props) {
       <Box h={70}>
         <Group h="100%" px="md" justify="space-between" wrap="nowrap">
         {/* Logo / Brand */}
-        <Stack gap={0}>
-          <Text
-            component={Link}
-            to="/"
-            fw={700}
-            size="lg"
-            c="var(--mantine-primary-color-filled)"
-            style={{ textDecoration: 'none', whiteSpace: 'nowrap' }}
-          >
-            {club.name}
-          </Text>
-          <Text size="xs" c="dimmed" style={{ lineHeight: 1.2 }}>
-            {club.tagline}
-          </Text>
-        </Stack>
+        <Group gap="sm" wrap="nowrap">
+          <Image src="/images/logoHQ.png" alt={`${club.name} logo`} h={40} w="auto" />
+          <Stack gap={0}>
+            <Text
+              component={Link}
+              to="/"
+              fw={700}
+              size="lg"
+              c="var(--mantine-primary-color-filled)"
+              style={{ textDecoration: 'none', whiteSpace: 'nowrap' }}
+            >
+              {club.name}
+            </Text>
+            <Text size="xs" c="dimmed" style={{ lineHeight: 1.2 }}>
+              {club.tagline}
+            </Text>
+          </Stack>
+        </Group>
 
         {/* Desktop Navigation Links */}
         <Group gap="md" wrap="nowrap" visibleFrom="md">

@@ -1,4 +1,4 @@
-import { Title, Text, Button, Group, SimpleGrid, Paper, ThemeIcon, Stack, Container, Anchor, List, Box, Flex, Badge } from '@mantine/core';
+import { Title, Text, Button, Group, SimpleGrid, Paper, ThemeIcon, Stack, Container, Anchor, List, Box, Flex, Badge, Image } from '@mantine/core';
 import { IconCheck, IconBrandGithub, IconCalendar, IconCode, IconMail, IconBrandGoogle, IconCloud, IconDeviceDesktop, IconUsers, IconShield, IconCreditCard, IconBrandOpenSource } from '@tabler/icons-react';
 import { useMediaQuery } from '@mantine/hooks';
 import type { AppData } from '../types';
@@ -10,6 +10,7 @@ interface Props { data: AppData }
 export const HomePage = ({ data }: Props) => {
   const { club, features, repos, contact, clubFeed } = data;
   const isLarge = useMediaQuery('(min-width: 768px)');
+  const isSmall = useMediaQuery('(min-width: 480px)');
 
   return (
     <Stack>
@@ -22,13 +23,13 @@ export const HomePage = ({ data }: Props) => {
           overflow: 'hidden',
         }}
       >
-        <Container size="lg" py="xl" style={{ height: '100%', position: 'relative', zIndex: 2 }}>
+        <Container size="xl" py="xxl" style={{ height: '100%', position: 'relative', zIndex: 2 }}>
           <Flex 
             align="center" 
             justify="center"
-            direction={{ base: 'column', sm: 'row' }}
+            direction={{ base: 'column', md: 'row' }}
             wrap="wrap" 
-            gap="xl"
+            gap="xxl"
             style={{ 
               height: '100%',
             }}
@@ -88,6 +89,12 @@ export const HomePage = ({ data }: Props) => {
               </Group>
             </Stack>
             <Box style={{ flex: 1, minWidth: 280, position: 'relative' }}>
+              {/* Logo positioned with dashboard cards */}
+              {isSmall && (
+                <Box style={{ position: 'absolute', top: '-60px', right: '20px', zIndex: 4 }}>
+                  <Image src="/images/logo.png" alt={`${club.name} logo`} h={140} w="auto" />
+                </Box>
+              )}
               <Box
                 style={{
                   background: 'linear-gradient(135deg, #ffffff 0%, #f7fdf9 100%)',
@@ -161,8 +168,13 @@ export const HomePage = ({ data }: Props) => {
         <Container size="lg">
           <Stack gap="xl">
             <div>
-               <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center" mb="xs">Platform Features</Text>
-               <Title order={2} ta="center" mb="md">Built for Grassroots Clubs</Title>
+               <Group justify="center" gap="md" mb="md">
+                 <Image src="/images/logo.png" alt={`${club.name} logo`} h={50} w="auto" />
+                 <div>
+                   <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center">Platform Features</Text>
+                   <Title order={2} ta="center">Built for Grassroots Clubs</Title>
+                 </div>
+               </Group>
               <Text size="lg" c="dimmed" ta="center" maw={800} mx="auto">
                 Everything your club needs to manage teams, fixtures, and communications—all in one secure platform.
               </Text>
@@ -210,8 +222,13 @@ export const HomePage = ({ data }: Props) => {
         <Container size="lg">
           <Stack gap="xl">
             <div>
-              <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center" mb="xs">Financial Tools</Text>
-              <Title order={2} ta="center" mb="md" c="white">Traceable Payments for Treasurers</Title>
+              <Group justify="center" gap="md" mb="md">
+                <Image src="/images/logo.png" alt={`${club.name} logo`} h={50} w="auto" />
+                <div>
+                  <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center">Financial Tools</Text>
+                  <Title order={2} ta="center" c="white">Traceable Payments for Treasurers</Title>
+                </div>
+              </Group>
               <Text size="lg" c="gray.4" ta="center" maw={800} mx="auto">
                 Generate payment links with FAN references for instant bank reconciliation—no personal data stored.
               </Text>
@@ -226,8 +243,13 @@ export const HomePage = ({ data }: Props) => {
         <Container size="lg">
           <Stack gap="xl">
             <div>
-               <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center" mb="xs">Live Demo</Text>
-               <Title order={2} ta="center" mb="md">See it in action</Title>
+               <Group justify="center" gap="md" mb="md">
+                 <Image src="/images/logo.png" alt={`${club.name} logo`} h={50} w="auto" />
+                 <div>
+                   <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center">Live Demo</Text>
+                   <Title order={2} ta="center">See it in action</Title>
+                 </div>
+               </Group>
               <Text size="lg" c="dimmed" ta="center" maw={800} mx="auto">
                 Search for any grassroots football club to see live fixtures, results, and standings powered by our real-time data integration.
               </Text>
@@ -280,8 +302,13 @@ export const HomePage = ({ data }: Props) => {
         <Container size="lg">
           <Stack gap="xl">
             <div>
-               <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center" mb="xs">Open Source</Text>
-               <Title order={2} ta="center" mb="md">Built on transparent foundations</Title>
+               <Group justify="center" gap="md" mb="md">
+                 <Image src="/images/logo.png" alt={`${club.name} logo`} h={50} w="auto" />
+                 <div>
+                   <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center">Open Source</Text>
+                   <Title order={2} ta="center">Built on transparent foundations</Title>
+                 </div>
+               </Group>
               <Text size="lg" c="dimmed" ta="center" maw={800} mx="auto">
                 Our platform is built on open-source projects that you can inspect, contribute to, and even self-host.
               </Text>
@@ -395,6 +422,7 @@ export const HomePage = ({ data }: Props) => {
             </Paper>
              <Stack gap="xs" align="center">
                <Group gap="md">
+                 <Image src="/images/logo.png" alt={`${club.name} logo`} h={40} w="auto" />
                  <Text size="sm" c="gray.4">touchlinehq.co.uk</Text>
                  <Badge color="green" variant="light" size="sm">Made in the UK</Badge>
                </Group>
