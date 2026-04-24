@@ -92,7 +92,7 @@ export const HomePage = ({ data }: Props) => {
               {/* Logo positioned with dashboard cards */}
               {isSmall && (
                 <Box style={{ position: 'absolute', top: '-60px', right: '20px', zIndex: 4 }}>
-                  <Image src="/images/logo.png" alt={`${club.name} logo`} h={140} w="auto" />
+                  <Image src={`${import.meta.env.BASE_URL}images/logo.png`} alt={`${club.name} logo`} h={140} w="auto" />
                 </Box>
               )}
               <Box
@@ -169,7 +169,7 @@ export const HomePage = ({ data }: Props) => {
           <Stack gap="xl">
             <div>
                <Group justify="center" gap="md" mb="md">
-                 <Image src="/images/logo.png" alt={`${club.name} logo`} h={50} w="auto" />
+                 <Image src={`${import.meta.env.BASE_URL}images/logo.png`} alt={`${club.name} logo`} h={50} w="auto" />
                  <div>
                    <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center">Platform Features</Text>
                    <Title order={2} ta="center">Built for Grassroots Clubs</Title>
@@ -223,7 +223,7 @@ export const HomePage = ({ data }: Props) => {
           <Stack gap="xl">
             <div>
               <Group justify="center" gap="md" mb="md">
-                <Image src="/images/logo.png" alt={`${club.name} logo`} h={50} w="auto" />
+                <Image src={`${import.meta.env.BASE_URL}images/logo.png`} alt={`${club.name} logo`} h={50} w="auto" />
                 <div>
                   <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center">Financial Tools</Text>
                   <Title order={2} ta="center" c="white">Traceable Payments for Treasurers</Title>
@@ -244,7 +244,7 @@ export const HomePage = ({ data }: Props) => {
           <Stack gap="xl">
             <div>
                <Group justify="center" gap="md" mb="md">
-                 <Image src="/images/logo.png" alt={`${club.name} logo`} h={50} w="auto" />
+                 <Image src={`${import.meta.env.BASE_URL}images/logo.png`} alt={`${club.name} logo`} h={50} w="auto" />
                  <div>
                    <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center">Live Demo</Text>
                    <Title order={2} ta="center">See it in action</Title>
@@ -303,7 +303,7 @@ export const HomePage = ({ data }: Props) => {
           <Stack gap="xl">
             <div>
                <Group justify="center" gap="md" mb="md">
-                 <Image src="/images/logo.png" alt={`${club.name} logo`} h={50} w="auto" />
+                 <Image src={`${import.meta.env.BASE_URL}images/logo.png`} alt={`${club.name} logo`} h={50} w="auto" />
                  <div>
                    <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center">Open Source</Text>
                    <Title order={2} ta="center">Built on transparent foundations</Title>
@@ -422,7 +422,7 @@ export const HomePage = ({ data }: Props) => {
             </Paper>
              <Stack gap="xs" align="center">
                <Group gap="md">
-                 <Image src="/images/logo.png" alt={`${club.name} logo`} h={40} w="auto" />
+                 <Image src={`${import.meta.env.BASE_URL}images/logo.png`} alt={`${club.name} logo`} h={40} w="auto" />
                  <Text size="sm" c="gray.4">touchlinehq.co.uk</Text>
                  <Badge color="green" variant="light" size="sm">Made in the UK</Badge>
                </Group>

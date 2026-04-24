@@ -32,7 +32,7 @@ export function SiteHeader({ club }: Props) {
         <Group h="100%" px="md" justify="space-between" wrap="nowrap">
         {/* Logo / Brand */}
         <Group gap="sm" wrap="nowrap">
-          <Image src="/images/logoHQ.png" alt={`${club.name} logo`} h={40} w="auto" />
+          <Image src={`${import.meta.env.BASE_URL}images/logoHQ.png`} alt={`${club.name} logo`} h={40} w="auto" />
           <Stack gap={0}>
             <Text
               component={Link}
