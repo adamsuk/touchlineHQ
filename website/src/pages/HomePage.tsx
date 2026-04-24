@@ -1,5 +1,6 @@
 import { Title, Text, Button, Group, SimpleGrid, Paper, ThemeIcon, Stack, Container, Anchor, List, Box, Flex, Badge } from '@mantine/core';
 import { IconCheck, IconBrandGithub, IconCalendar, IconCode, IconMail, IconBrandGoogle, IconCloud, IconDeviceDesktop, IconUsers, IconShield, IconCreditCard, IconBrandOpenSource } from '@tabler/icons-react';
+import { useMediaQuery } from '@mantine/hooks';
 import type { AppData } from '../types';
 import { DemoSearch } from '../components/DemoSearch';
 import { TreasurerTool } from '../components/TreasurerTool';
@@ -8,29 +9,28 @@ interface Props { data: AppData }
 
 export const HomePage = ({ data }: Props) => {
   const { club, features, repos, contact, clubFeed } = data;
+  const isLarge = useMediaQuery('(min-width: 768px)');
 
   return (
     <Stack>
       {/* Hero Section */}
       <Box 
-        style={{ 
-          minHeight: '100vh',
+        style={{
+          height: isLarge ? '100vh' : 'auto',
           background: 'linear-gradient(135deg, #f7fdf9 0%, #e6f9ee 100%)',
           position: 'relative',
           overflow: 'hidden',
         }}
       >
-        <Container size="lg" style={{ position: 'relative', zIndex: 2 }}>
+        <Container size="lg" py="xl" style={{ height: '100%', position: 'relative', zIndex: 2 }}>
           <Flex 
             align="center" 
-            justify="space-between" 
+            justify="center"
             direction={{ base: 'column', sm: 'row' }}
             wrap="wrap" 
             gap="xl"
             style={{ 
-              minHeight: 'calc(100vh - 70px)', 
-              paddingTop: '1.5rem',
-              paddingBottom: '2rem',
+              height: '100%',
             }}
           >
             <Stack gap="xl" style={{ flex: 1, minWidth: 300, maxWidth: 600 }}>
@@ -312,7 +312,6 @@ export const HomePage = ({ data }: Props) => {
                         </ThemeIcon>
                         <Title order={3} size="h4">{repo.name}</Title>
                       </Group>
-                      <IconBrandGithub size={24} />
                     </Group>
                     <Text c="dimmed">{repo.description}</Text>
                     <Group gap="xs" wrap="wrap">
@@ -369,8 +368,11 @@ export const HomePage = ({ data }: Props) => {
                   radius="xl"
                   color="green.6"
                   variant="filled"
+                  justify="center"
+                  style={{ display: 'flex', alignItems: 'center' }}
                 >
-                  Email {contact.email}
+                  Email
+                  <Box visibleFrom="sm">{contact.email}</Box>
                 </Button>
                 <Group gap="lg" mt="md">
                   {contact.social.github && (

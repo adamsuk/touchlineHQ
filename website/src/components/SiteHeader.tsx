@@ -1,4 +1,4 @@
-import { Group, Text, ActionIcon, Anchor, Button, Burger, Drawer, Stack } from '@mantine/core';
+import { Group, Text, ActionIcon, Button, Burger, Drawer, Stack, Box } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconBrandGithub, IconBrandTwitter, IconBrandLinkedin, IconList, IconCode, IconCalendar, IconMail } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
@@ -28,7 +28,8 @@ export function SiteHeader({ club }: Props) {
 
   return (
     <>
-      <Group h="100%" px="md" justify="space-between" wrap="nowrap">
+      <Box h={70}>
+        <Group h="100%" px="md" justify="space-between" wrap="nowrap">
         {/* Logo / Brand */}
         <Stack gap={0}>
           <Text
@@ -47,7 +48,7 @@ export function SiteHeader({ club }: Props) {
         </Stack>
 
         {/* Desktop Navigation Links */}
-        <Group gap="md" wrap="nowrap" visibleFrom="sm">
+        <Group gap="md" wrap="nowrap" visibleFrom="md">
           {navItems.map((item) => (
             <Button
               key={item.id}
@@ -62,7 +63,7 @@ export function SiteHeader({ club }: Props) {
         </Group>
 
         {/* Desktop Social Links & CTA */}
-        <Group gap="xs" wrap="nowrap" visibleFrom="sm">
+        <Group gap="xs" wrap="nowrap" visibleFrom="md">
           {club.socials.github && club.socials.github !== '#' && (
             <ActionIcon
               component="a"
@@ -111,8 +112,9 @@ export function SiteHeader({ club }: Props) {
         </Group>
 
         {/* Mobile Menu Button */}
-        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-      </Group>
+        <Burger opened={opened} onClick={toggle} hiddenFrom="md" size="sm" />
+        </Group>
+      </Box>
 
       {/* Mobile Menu Drawer */}
       <Drawer
@@ -120,7 +122,7 @@ export function SiteHeader({ club }: Props) {
         onClose={close}
         title="Menu"
         position="right"
-        hiddenFrom="sm"
+        hiddenFrom="md"
         padding="lg"
         size="sm"
       >

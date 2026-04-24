@@ -162,7 +162,7 @@ export function ClubFixturesDisplay({ feed }: Props) {
           </Tabs.Tab>
         </Tabs.List>
 
-        <Tabs.Panel value="fixtures" pt="md">
+        <Tabs.Panel value="fixtures" pt="md" style={{ maxHeight: 500, overflowY: "scroll" }}>
           {fixtures.length === 0 ? (
             <Text c="dimmed" size="sm">No upcoming fixtures.</Text>
           ) : (
@@ -185,7 +185,7 @@ export function ClubFixturesDisplay({ feed }: Props) {
           )}
         </Tabs.Panel>
 
-        <Tabs.Panel value="results" pt="md">
+        <Tabs.Panel value="results" pt="md" style={{ maxHeight: 500, overflowY: "scroll" }}>
           {results.length === 0 ? (
             <Text c="dimmed" size="sm">No results yet.</Text>
           ) : (
