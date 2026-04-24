@@ -13,9 +13,9 @@
     ]
   },
   {
-    "name": "fulltimeCalendar",
+    "name": "fulltimeFeeds",
     "description": "Python integration that generates ICS calendar files and JSON feeds from FA Full-Time fixture data.",
-    "url": "https://github.com/adamsuk/fulltimeCalendar",
+    "url": "https://github.com/touchlineHQ/fulltimeFeeds",
     "tech": ["Python", "Playwright", "BeautifulSoup", "GitHub Actions"],
     "features": [
       "Daily automated data collection",

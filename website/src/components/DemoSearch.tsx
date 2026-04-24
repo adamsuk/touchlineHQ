@@ -87,7 +87,7 @@ export function DemoSearch() {
 
       {!selectedClub && !loadingSlugs && !error && (
         <Alert icon={<IconSearch size={16} />} color="blue" title="Try it out">
-           Select a club from the dropdown to see live fixtures and results powered by our fulltimeCalendar integration.
+           Select a club from the dropdown to see live fixtures and results powered by our fulltimeFeeds integration.
           <br />
           <strong>Example clubs:</strong> East Leake, Quorn, etc.
         </Alert>

@@ -54,7 +54,7 @@ export interface Contact {
   message: string;
 }
 
-// Live feed types (from fulltimeCalendar)
+// Live feed types (from fulltimeFeeds)
 export interface LiveFixture {
   id: string;
   date: string;
