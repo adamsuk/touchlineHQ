@@ -2,7 +2,7 @@
   {
     "name": "ELBantams",
     "description": "React/TypeScript club website platform for grassroots football clubs.",
-    "url": "https://github.com/adamsuk/ELBantams",
+    "url": "https://github.com/kieranbop1990/ELBantams",
     "tech": ["React", "TypeScript", "Mantine", "Vite", "Cloudflare Pages"],
     "features": [
       "Content‑driven via JSON files",
