@@ -57,7 +57,7 @@ export function DemoSearch() {
     <Stack gap="md">
       <Select
         label="Search for a grassroots football club"
-        placeholder="Type club name (e.g., 'east-leake', 'ac-united')"
+        placeholder="Type club name (e.g., 'East Leake', 'Quorn')"
         data={clubSlugs}
         value={selectedClub}
         onChange={setSelectedClub}
@@ -89,7 +89,7 @@ export function DemoSearch() {
         <Alert icon={<IconSearch size={16} />} color="blue" title="Try it out">
            Select a club from the dropdown to see live fixtures and results powered by our fulltimeCalendar integration.
           <br />
-          <strong>Example clubs:</strong> east-leake, ac-united, atfa-brinsley, etc.
+          <strong>Example clubs:</strong> East Leake, Quorn, etc.
         </Alert>
       )}
     </Stack>

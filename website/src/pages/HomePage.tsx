@@ -1,5 +1,6 @@
-import { Title, Text, Button, Group, SimpleGrid, Paper, ThemeIcon, Stack, Container, Anchor, List, Box, Flex, Badge } from '@mantine/core';
+import { Title, Text, Button, Group, SimpleGrid, Paper, ThemeIcon, Stack, Container, Anchor, List, Box, Flex, Badge, Image } from '@mantine/core';
 import { IconCheck, IconBrandGithub, IconCalendar, IconCode, IconMail, IconBrandGoogle, IconCloud, IconDeviceDesktop, IconUsers, IconShield, IconCreditCard, IconBrandOpenSource } from '@tabler/icons-react';
+import { useMediaQuery } from '@mantine/hooks';
 import type { AppData } from '../types';
 import { DemoSearch } from '../components/DemoSearch';
 import { TreasurerTool } from '../components/TreasurerTool';
@@ -8,30 +9,39 @@ interface Props { data: AppData }
 
 export const HomePage = ({ data }: Props) => {
   const { club, features, repos, contact, clubFeed } = data;
+  const isLarge = useMediaQuery('(min-width: 768px)');
+  const isSmall = useMediaQuery('(min-width: 480px)');
 
   return (
     <Stack>
       {/* Hero Section */}
       <Box 
-        style={{ 
-          minHeight: '100vh',
+        style={{
+          height: isLarge ? '100vh' : 'auto',
           background: 'linear-gradient(135deg, #f7fdf9 0%, #e6f9ee 100%)',
           position: 'relative',
           overflow: 'hidden',
         }}
       >
-        <Container size="lg" style={{ position: 'relative', zIndex: 2 }}>
+        <Container size="xl" py="xxl" style={{ height: '100%', position: 'relative', zIndex: 2 }}>
           <Flex 
             align="center" 
-            justify="space-between" 
+            justify="center"
+            direction={{ base: 'column', md: 'row' }}
             wrap="wrap" 
-            gap="xl" 
-            style={{ minHeight: '100vh', padding: '4rem 0' }}
+            gap="xxl"
+            style={{ 
+              height: '100%',
+            }}
           >
             <Stack gap="xl" style={{ flex: 1, minWidth: 300, maxWidth: 600 }}>
               <div>
-                <Text size="sm" fw={600} c="green.8" tt="uppercase" mb="xs">Grassroots Football Platform</Text>
-                <Title order={1} size="3.5rem" lh={1.1} mb="md">
+                <Title 
+                  order={1} 
+                  size="3.5rem"
+                  lh={1.1} 
+                  mb="md"
+                >
                   {club.hero.title}
                 </Title>
                 <Text size="xl" c="dimmed" mb="xl">
@@ -46,6 +56,7 @@ export const HomePage = ({ data }: Props) => {
                   size="lg"
                   radius="xl"
                   color="green.6"
+                  className="hero-btn-full"
                 >
                   {club.hero.cta}
                 </Button>
@@ -57,6 +68,7 @@ export const HomePage = ({ data }: Props) => {
                   size="lg"
                   radius="xl"
                   color="green.6"
+                  className="hero-btn-full"
                 >
                   View Sample Club
                 </Button>
@@ -76,13 +88,19 @@ export const HomePage = ({ data }: Props) => {
                 </Stack>
               </Group>
             </Stack>
-            <Box style={{ flex: 1, minWidth: 300, position: 'relative' }}>
+            <Box style={{ flex: 1, minWidth: 280, position: 'relative' }}>
+              {/* Logo positioned with dashboard cards */}
+              {isSmall && (
+                <Box style={{ position: 'absolute', top: '-60px', right: '20px', zIndex: 4 }}>
+                  <Image src={`${import.meta.env.BASE_URL}images/logo.png`} alt={`${club.name} logo`} h={140} w="auto" />
+                </Box>
+              )}
               <Box
                 style={{
                   background: 'linear-gradient(135deg, #ffffff 0%, #f7fdf9 100%)',
                   borderRadius: '2rem',
-                  padding: '2rem',
-                   boxShadow: '0 20px 40px rgba(0, 0, 0, 0.08)',
+                  padding: '1.5rem',
+                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.08)',
                   border: '1px solid #e2e8f0',
                   transform: 'rotate(3deg)',
                 }}
@@ -103,14 +121,15 @@ export const HomePage = ({ data }: Props) => {
                 </Stack>
               </Box>
               <Box
+                className="hidden-mobile"
                 style={{
                   position: 'absolute',
                   top: '40%',
-                  left: '-20%',
+                  left: '-10%',
                   background: 'linear-gradient(135deg, #ffffff 0%, #f7fdf9 100%)',
                   borderRadius: '1.5rem',
                   padding: '1.5rem',
-                   boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.08)',
                   border: '1px solid #e2e8f0',
                   transform: 'rotate(-5deg)',
                   width: '70%',
@@ -149,8 +168,13 @@ export const HomePage = ({ data }: Props) => {
         <Container size="lg">
           <Stack gap="xl">
             <div>
-               <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center" mb="xs">Platform Features</Text>
-               <Title order={2} ta="center" mb="md">Built for Grassroots Clubs</Title>
+               <Group justify="center" gap="md" mb="md">
+                 <Image src={`${import.meta.env.BASE_URL}images/logo.png`} alt={`${club.name} logo`} h={50} w="auto" />
+                 <div>
+                   <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center">Platform Features</Text>
+                   <Title order={2} ta="center">Built for Grassroots Clubs</Title>
+                 </div>
+               </Group>
               <Text size="lg" c="dimmed" ta="center" maw={800} mx="auto">
                 Everything your club needs to manage teams, fixtures, and communications—all in one secure platform.
               </Text>
@@ -198,8 +222,13 @@ export const HomePage = ({ data }: Props) => {
         <Container size="lg">
           <Stack gap="xl">
             <div>
-              <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center" mb="xs">Financial Tools</Text>
-              <Title order={2} ta="center" mb="md" c="white">Traceable Payments for Treasurers</Title>
+              <Group justify="center" gap="md" mb="md">
+                <Image src={`${import.meta.env.BASE_URL}images/logo.png`} alt={`${club.name} logo`} h={50} w="auto" />
+                <div>
+                  <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center">Financial Tools</Text>
+                  <Title order={2} ta="center" c="white">Traceable Payments for Treasurers</Title>
+                </div>
+              </Group>
               <Text size="lg" c="gray.4" ta="center" maw={800} mx="auto">
                 Generate payment links with FAN references for instant bank reconciliation—no personal data stored.
               </Text>
@@ -214,8 +243,13 @@ export const HomePage = ({ data }: Props) => {
         <Container size="lg">
           <Stack gap="xl">
             <div>
-               <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center" mb="xs">Live Demo</Text>
-               <Title order={2} ta="center" mb="md">See it in action</Title>
+               <Group justify="center" gap="md" mb="md">
+                 <Image src={`${import.meta.env.BASE_URL}images/logo.png`} alt={`${club.name} logo`} h={50} w="auto" />
+                 <div>
+                   <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center">Live Demo</Text>
+                   <Title order={2} ta="center">See it in action</Title>
+                 </div>
+               </Group>
               <Text size="lg" c="dimmed" ta="center" maw={800} mx="auto">
                 Search for any grassroots football club to see live fixtures, results, and standings powered by our real-time data integration.
               </Text>
@@ -268,8 +302,13 @@ export const HomePage = ({ data }: Props) => {
         <Container size="lg">
           <Stack gap="xl">
             <div>
-               <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center" mb="xs">Open Source</Text>
-               <Title order={2} ta="center" mb="md">Built on transparent foundations</Title>
+               <Group justify="center" gap="md" mb="md">
+                 <Image src={`${import.meta.env.BASE_URL}images/logo.png`} alt={`${club.name} logo`} h={50} w="auto" />
+                 <div>
+                   <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center">Open Source</Text>
+                   <Title order={2} ta="center">Built on transparent foundations</Title>
+                 </div>
+               </Group>
               <Text size="lg" c="dimmed" ta="center" maw={800} mx="auto">
                 Our platform is built on open-source projects that you can inspect, contribute to, and even self-host.
               </Text>
@@ -300,7 +339,6 @@ export const HomePage = ({ data }: Props) => {
                         </ThemeIcon>
                         <Title order={3} size="h4">{repo.name}</Title>
                       </Group>
-                      <IconBrandGithub size={24} />
                     </Group>
                     <Text c="dimmed">{repo.description}</Text>
                     <Group gap="xs" wrap="wrap">
@@ -357,8 +395,11 @@ export const HomePage = ({ data }: Props) => {
                   radius="xl"
                   color="green.6"
                   variant="filled"
+                  justify="center"
+                  style={{ display: 'flex', alignItems: 'center' }}
                 >
-                  Email {contact.email}
+                  Email
+                  <Box visibleFrom="sm">{contact.email}</Box>
                 </Button>
                 <Group gap="lg" mt="md">
                   {contact.social.github && (
@@ -381,6 +422,7 @@ export const HomePage = ({ data }: Props) => {
             </Paper>
              <Stack gap="xs" align="center">
                <Group gap="md">
+                 <Image src={`${import.meta.env.BASE_URL}images/logo.png`} alt={`${club.name} logo`} h={40} w="auto" />
                  <Text size="sm" c="gray.4">touchlinehq.co.uk</Text>
                  <Badge color="green" variant="light" size="sm">Made in the UK</Badge>
                </Group>

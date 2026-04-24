@@ -31,10 +31,8 @@ export const App = () => {
   return (
     <MantineProvider theme={clubTheme}>
       <HashRouter>
-        <AppShell header={{ height: 60 }} padding="md">
-          <AppShell.Header>
-            <SiteHeader club={data.club} />
-          </AppShell.Header>
+        <AppShell>
+          <SiteHeader club={data.club} />
           <AppShell.Main p={0}>
             <Routes>
               <Route path="/" element={<HomePage data={data} />} />
