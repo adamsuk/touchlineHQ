@@ -1,15 +1,15 @@
 [
   {
-    "name": "ELBantams",
+    "name": "clubsPlatform",
     "description": "React/TypeScript club website platform for grassroots football clubs.",
-    "url": "https://github.com/kieranbop1990/ELBantams",
+    "url": "https://github.com/touchlineHQ/clubsPlatform",
     "tech": ["React", "TypeScript", "Mantine", "Vite", "Cloudflare Pages"],
     "features": [
-      "Content‑driven via JSON files",
+      "Content driven via JSON files",
       "Live fixtures & results integration",
-      "Customizable theme & branding",
+      "Customisable theme & branding",
       "Admin dashboard for club management",
-      "Pitch booking system"
+      "Self host or register through our platform"
     ]
   },
   {
@@ -21,7 +21,7 @@
       "Daily automated data collection",
       "ICS calendars for each team",
       "JSON feeds for fixtures, results, clubs",
-      "Team name normalization & club inference",
+      "Team name normalisation & club inference",
       "GitHub Pages hosting for feeds"
     ]
   }
