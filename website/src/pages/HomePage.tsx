@@ -62,7 +62,9 @@ export const HomePage = ({ data }: Props) => {
                 </Button>
                 <Button 
                   component="a" 
-                  href="#demo"
+                  href="https://clubs.touchlinehq.co.uk/demo/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   variant="outline"
                   leftSection={<IconDeviceDesktop size={20} />}
                   size="lg"
