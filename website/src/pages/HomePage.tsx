@@ -13,7 +13,7 @@ export const HomePage = ({ data }: Props) => {
   const isSmall = useMediaQuery('(min-width: 480px)');
 
   return (
-    <Stack>
+    <Stack gap={0}>
       {/* Hero Section */}
       <Box 
         style={{
@@ -78,7 +78,7 @@ export const HomePage = ({ data }: Props) => {
               <Group gap="xl" mt="xl">
                 <Stack gap={4}>
                    <Text fw={700} size="lg">100%</Text>
-                  <Text size="sm" c="dimmed">Customizable</Text>
+                  <Text size="sm" c="dimmed">Customisable</Text>
                 </Stack>
                 <Stack gap={4}>
                    <Text fw={700} size="lg">Live</Text>
@@ -116,9 +116,9 @@ export const HomePage = ({ data }: Props) => {
                     Modern club website with team management, fixtures, results, and player profiles.
                   </Text>
                   <Group gap="xs" wrap="wrap">
-                    <Button variant="light" size="xs" radius="xl" leftSection={<IconUsers size={12} />}>Teams</Button>
-                    <Button variant="light" size="xs" radius="xl" leftSection={<IconCalendar size={12} />}>Fixtures</Button>
-                    <Button variant="light" size="xs" radius="xl" leftSection={<IconCloud size={12} />}>Cloud Hosted</Button>
+                    <Badge variant="light" size="lg" radius="xl" fw={500} leftSection={<IconUsers size={12} />} styles={{ label: { textTransform: 'none' }}}>Teams</Badge>
+                    <Badge variant="light" size="lg" radius="xl" fw={500} leftSection={<IconUsers size={12} />} styles={{ label: { textTransform: 'none' }}}>Fixtures</Badge>
+                    <Badge variant="light" size="lg" radius="xl" fw={500} leftSection={<IconUsers size={12} />} styles={{ label: { textTransform: 'none' }}}>Cloud Hosted</Badge>
                   </Group>
                 </Stack>
               </Box>
@@ -244,18 +244,30 @@ export const HomePage = ({ data }: Props) => {
        <Box id="demo" py="xl" style={{ background: 'linear-gradient(135deg, #f7fdf9 0%, #e6f9ee 100%)', borderRadius: 'lg' }}>
         <Container size="lg">
           <Stack gap="xl">
-            <div>
-               <Group justify="center" gap="md" mb="md">
-                 <Image src={`${import.meta.env.BASE_URL}images/logo.png`} alt={`${club.name} logo`} h={50} w="auto" />
-                 <div>
-                   <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center">Live Demo</Text>
-                   <Title order={2} ta="center">See it in action</Title>
-                 </div>
-               </Group>
-              <Text size="lg" c="dimmed" ta="center" maw={800} mx="auto">
-                Search for any grassroots football club to see live fixtures, results, and standings powered by our real-time data integration.
-              </Text>
-            </div>
+            <Group justify="center" gap="md" mb="md">
+              <Image src={`${import.meta.env.BASE_URL}images/logo.png`} alt={`${club.name} logo`} h={50} w="auto" />
+              <div>
+                <Text size="sm" fw={600} c="green.8" tt="uppercase" ta="center">Live Demo</Text>
+                <Title order={2} ta="center">See it in action</Title>
+              </div>
+            </Group>
+            <Text size="lg" c="dimmed" ta="center" maw={800} mx="auto">
+              View our sample club site or search for any grassroots football club to see live fixtures, results, and recent form powered by our real-time data integration.
+            </Text>
+            <Button 
+              component="a" 
+              href="https://clubs.touchlinehq.co.uk/demo/"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="outline"
+              leftSection={<IconDeviceDesktop size={20} />}
+              size="lg"
+              radius="xl"
+              color="green.6"
+              className="hero-btn-full"
+            >
+              View Sample Club
+            </Button>
             <Paper p="xl" radius="lg" withBorder style={{ borderColor: 'var(--mantine-color-gray-2)', background: 'white' }}>
               <Stack gap="lg">
                 <DemoSearch />
@@ -343,11 +355,6 @@ export const HomePage = ({ data }: Props) => {
                       </Group>
                     </Group>
                     <Text c="dimmed">{repo.description}</Text>
-                    <Group gap="xs" wrap="wrap">
-                      {repo.tech.map((tech) => (
-                        <Button key={tech} variant="light" size="xs" radius="xl" color="green.5">{tech}</Button>
-                      ))}
-                    </Group>
                     <List spacing="xs" size="sm">
                       {repo.features.map((feature, idx) => (
                         <List.Item key={idx} icon={<IconCode size={14} color="var(--mantine-color-green-6)" />}>
