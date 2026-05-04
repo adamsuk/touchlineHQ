@@ -1,0 +1,17 @@
+{
+  "name": "touchlinehq",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "cd website && npm run dev",
+    "build": "cd website && npm run build",
+    "preview": "npx wrangler pages dev website/dist"
+  },
+  "dependencies": {
+    "gocardless-nodejs": "^8.1.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241230.0",
+    "@types/node": "^25.5.0",
+    "wrangler": "^4.0.0"
+  }
+}

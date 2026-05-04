@@ -1,16 +1,14 @@
 import { useState } from 'react';
 import { 
   Paper, Title, Text, Stack, Group, Button, TextInput, 
-  Select, Alert, Divider, Badge, Code, Box, SimpleGrid
+  Select, Alert, Divider, SimpleGrid
 } from '@mantine/core';
-import { IconCreditCard, IconReceipt, IconCopy, IconCheck, IconShield } from '@tabler/icons-react';
+import { IconCreditCard, IconReceipt, IconShield } from '@tabler/icons-react';
 
-export function TreasurerTool() {
+export const TreasurerTool = () => {
   const [team, setTeam] = useState('');
   const [fan, setFan] = useState('');
   const [paymentType, setPaymentType] = useState('SUBS');
-  const [generatedLink, setGeneratedLink] = useState('');
-  const [copied, setCopied] = useState(false);
 
   const paymentTypes = [
     { value: 'SUBS', label: 'Subscription Fees' },
@@ -21,22 +19,22 @@ export function TreasurerTool() {
   ];
 
   const getReference = () => {
-    if (!team || !fan || !paymentType) return '';
-    return `${team.replace(/\s+/g, '').toUpperCase()}-${fan}-${paymentType}`;
+    if (!team || !fan || !paymentType) return {};
+    return { team: team.toLowerCase().replace(/\s+/g, ''), fan, type: paymentType };
   };
 
-  const generateLink = () => {
+  const generateLink = async () => {
     const ref = getReference();
     if (!ref) return;
-    const mockLink = `https://pay.gocardless.com/brt/${ref}`;
-    setGeneratedLink(mockLink);
-    setCopied(false);
-  };
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(generatedLink);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    const res = await fetch('/api/payments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(ref),
+    });
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    }
   };
 
   return (
@@ -108,53 +106,6 @@ export function TreasurerTool() {
           </Button>
         </Stack>
 
-        {generatedLink && (
-          <Stack gap="md" mt="lg">
-            <Divider />
-            <Title order={3} size="h4">Your Traceable Payment Link</Title>
-            
-            <Paper p="md" radius="md" withBorder style={{ background: 'var(--mantine-color-gray-0)' }}>
-              <Stack gap="xs">
-                <Group justify="space-between">
-                  <Badge color="green" variant="light">Reference Format</Badge>
-                  <Code fw={700}>{getReference()}</Code>
-                </Group>
-                <Box style={{ wordBreak: 'break-all' }}>
-                  <Text size="sm" c="dimmed">Payment Link:</Text>
-                  <Text size="sm" fw={500}>{generatedLink}</Text>
-                </Box>
-              </Stack>
-            </Paper>
-
-            <Group>
-              <Button 
-                onClick={copyToClipboard}
-                variant="light"
-                color="gray"
-                leftSection={copied ? <IconCheck size={16} /> : <IconCopy size={16} />}
-              >
-                {copied ? 'Copied!' : 'Copy Link'}
-              </Button>
-              <Button 
-                component="a"
-                href={generatedLink}
-                target="_blank"
-                variant="outline"
-            color="green.6"
-              >
-                Open Payment Page
-              </Button>
-            </Group>
-
-            <Alert icon={<IconReceipt size={16} />} color="blue" variant="light" radius="md">
-              <Text size="sm">
-                <strong>How it works:</strong> Share this link with parents/players. When they pay, the bank statement will show the reference{' '}
-                <Code>{getReference()}</Code>, making reconciliation instant.
-              </Text>
-            </Alert>
-          </Stack>
-        )}
-
         <Divider />
         
         <Stack gap="xs">
@@ -182,8 +133,3 @@ export function TreasurerTool() {
     </Paper>
   );
 }
-
-// Note: SimpleGrid import missing, need to add if used
-// For now replace with Group wrap
-// Actually let me adjust: I'll replace SimpleGrid with Group wrap.
-// But I'll keep SimpleGrid and import it.
