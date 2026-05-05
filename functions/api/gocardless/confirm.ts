@@ -94,7 +94,6 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
         interval_unit: intervalUnit || 'monthly',
         interval: 1,
         name: description || reference,
-        payment_reference: reference,
         metadata: { reference, customer_ref: reference },
         links: { mandate: mandateId },
       },
