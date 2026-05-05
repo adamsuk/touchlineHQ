@@ -20,6 +20,7 @@ export const PaymentSuccessPage = () => {
   const subscriptionId = params.get('subscription');
   const reference = params.get('ref');
   const warning = params.get('warning');
+  const existing = params.get('existing') === '1';
   const amountDisplay = formatAmount(params.get('amount'), params.get('interval_unit'));
 
   return (
@@ -46,11 +47,19 @@ export const PaymentSuccessPage = () => {
           </Alert>
         )}
 
-        {!warning && subscriptionId && (
+        {!warning && subscriptionId && !existing && (
           <Alert icon={<IconReceipt size={16} />} color="green" variant="light" radius="md" w="100%">
             <Text size="sm">
               Your recurring subscription has been created. Payments will be collected automatically
               and will appear on your bank statement.
+            </Text>
+          </Alert>
+        )}
+
+        {existing && subscriptionId && (
+          <Alert icon={<IconReceipt size={16} />} color="blue" variant="light" radius="md" w="100%">
+            <Text size="sm">
+              This subscription is already active — no further action needed.
             </Text>
           </Alert>
         )}

@@ -18,6 +18,14 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
 
   const reference = `${team.replace(/\s+/g, '').toUpperCase()}-${fan}-${paymentType}`;
 
+  const baseDescription = description || `${paymentType} payment - FAN ${fan}`;
+  const pounds = (amountInPence / 100).toLocaleString('en-GB', {
+    style: 'currency',
+    currency: 'GBP',
+  });
+  const freq = intervalUnit === 'weekly' ? 'week' : intervalUnit === 'yearly' ? 'year' : 'month';
+  const hostedDescription = `${baseDescription} — ${pounds} per ${freq}`;
+
   const gcBase =
     env.GC_ENVIRONMENT === 'live'
       ? 'https://api.gocardless.com'
@@ -39,7 +47,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
         // Links it to the Mandate
         mandate_request: {
           scheme: 'bacs',
-          description: description || `${paymentType} payment - FAN ${fan}`,
+          description: hostedDescription,
         },
         // Links it to the Billing Request event itself
         metadata: {
@@ -69,7 +77,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     reference,
     amount: String(amountInPence),
     interval_unit: intervalUnit || 'monthly',
-    description: description || `${paymentType} payment - FAN ${fan}`,
+    description: baseDescription,
   });
   const redirectUri = `${origin}/api/gocardless/confirm?${confirmParams.toString()}`;
   const exitUri = `${origin}/payment-cancelled`;

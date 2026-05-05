@@ -83,6 +83,29 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     );
   }
 
+  // Idempotency: if a non-terminated subscription with this reference already
+  // exists for the mandate, return it rather than creating a duplicate.
+  // Cancelled/denied subs are excluded so re-subscription with the same
+  // reference remains possible after a cancellation.
+  const listRes = await fetch(`${gcBase}/subscriptions?mandate=${mandateId}`, {
+    headers: gcHeaders,
+  });
+  if (listRes.ok) {
+    const { subscriptions: existing } = await listRes.json<{ subscriptions: GCSubscription[] }>();
+    const match = existing.find(
+      (s) =>
+        s.metadata?.reference === reference &&
+        s.status !== 'cancelled' &&
+        s.status !== 'customer_approval_denied'
+    );
+    if (match) {
+      return Response.redirect(
+        `${origin}/payment-success?mandate=${mandateId}&subscription=${match.id}&ref=${encodeURIComponent(reference)}&amount=${amountInPence}&interval_unit=${intervalUnit || 'monthly'}&existing=1`,
+        302
+      );
+    }
+  }
+
   // Create the subscription against the mandate
   const subRes = await fetch(`${gcBase}/subscriptions`, {
     method: 'POST',
