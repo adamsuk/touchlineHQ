@@ -32,8 +32,8 @@ export const App = () => {
 
   return (
     <MantineProvider theme={clubTheme}>
-      <AppShell>
-        <BrowserRouter>
+      <BrowserRouter>
+        <AppShell>
           <SiteHeader club={data.club} />
           <AppShell.Main p={0}>
             <Routes>
@@ -43,8 +43,8 @@ export const App = () => {
               <Route path="*" element={<HomePage data={data} />} />
             </Routes>
           </AppShell.Main>
-        </BrowserRouter>
-      </AppShell>
+        </AppShell>
+      </BrowserRouter>
     </MantineProvider>
   );
 }

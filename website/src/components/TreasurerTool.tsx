@@ -22,7 +22,7 @@ const intervalOptions = [
   { value: 'yearly', label: 'Yearly' },
 ];
 
-export function TreasurerTool() {
+export const TreasurerTool = () => {
   const [team, setTeam] = useState('');
   const [fan, setFan] = useState('');
   const [paymentType, setPaymentType] = useState('SUBS');

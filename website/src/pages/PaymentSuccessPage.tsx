@@ -5,7 +5,7 @@ import {
 } from '@mantine/core';
 import { IconCheck, IconAlertTriangle, IconReceipt } from '@tabler/icons-react';
 
-function formatAmount(amountStr: string | null, intervalUnit: string | null): string {
+const formatAmount = (amountStr: string | null, intervalUnit: string | null): string => {
   const pence = parseInt(amountStr ?? '', 10);
   if (isNaN(pence)) return '';
   const pounds = (pence / 100).toLocaleString('en-GB', { style: 'currency', currency: 'GBP' });
@@ -13,7 +13,7 @@ function formatAmount(amountStr: string | null, intervalUnit: string | null): st
   return `${pounds} / ${freq}`;
 }
 
-export function PaymentSuccessPage() {
+export const PaymentSuccessPage = () => {
   const [params] = useSearchParams();
 
   const mandateId = params.get('mandate');
