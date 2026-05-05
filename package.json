@@ -1,0 +1,14 @@
+{
+  "name": "touchlinehq",
+  "private": true,
+  "scripts": {
+    "dev": "cd website && npm run dev",
+    "build": "cd website && npm run build",
+    "preview": "npx wrangler pages dev website/dist"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260505.1",
+    "@types/node": "^25.5.0",
+    "wrangler": "^4.0.0"
+  }
+}

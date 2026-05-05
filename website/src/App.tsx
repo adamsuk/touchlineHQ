@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppShell, Center, Loader, MantineProvider } from '@mantine/core';
 import { loadAllData } from './data';
 import type { AppData } from './types';
 import { createClubTheme } from './theme';
 import { SiteHeader } from './components/SiteHeader';
 import { HomePage } from './pages/HomePage';
+import { PaymentSuccessPage } from './pages/PaymentSuccessPage';
+import { PaymentCancelledPage } from './pages/PaymentCancelledPage';
 
 export const App = () => {
   const [data, setData] = useState<AppData | null>(null);
@@ -30,18 +32,19 @@ export const App = () => {
 
   return (
     <MantineProvider theme={clubTheme}>
-      <HashRouter>
+      <BrowserRouter>
         <AppShell>
           <SiteHeader club={data.club} />
           <AppShell.Main p={0}>
             <Routes>
               <Route path="/" element={<HomePage data={data} />} />
-              {/* Only one route - any other path redirects to home */}
+              <Route path="/payment-success" element={<PaymentSuccessPage />} />
+              <Route path="/payment-cancelled" element={<PaymentCancelledPage />} />
               <Route path="*" element={<HomePage data={data} />} />
             </Routes>
           </AppShell.Main>
         </AppShell>
-      </HashRouter>
+      </BrowserRouter>
     </MantineProvider>
   );
 }
