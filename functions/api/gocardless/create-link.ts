@@ -73,9 +73,6 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   const redirectUri = `${origin}/api/gocardless/confirm?${confirmParams.toString()}`;
   const exitUri = `${origin}/#/payment-cancelled`;
 
-  // Generate a simple random token (or use a UUID library)
-  const sessionToken = Math.random().toString(36).substring(2, 15);
-
   // Create the billing request flow to get the hosted payment URL
   const flowRes = await fetch(`${gcBase}/billing_request_flows`, {
     method: 'POST',
@@ -84,7 +81,6 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       billing_request_flows: {
         redirect_uri: redirectUri,
         exit_uri: exitUri,
-        session_token: sessionToken,
         links: {
           billing_request: br.id,
         },
