@@ -12,8 +12,13 @@ export interface GCBillingRequest {
   };
   metadata: Record<string, string>;
   links?: {
-    mandate?: string;
     customer?: string;
+    customer_billing_detail?: string;
+    customer_bank_account?: string;
+    creditor?: string;
+    organisation?: string;
+    mandate_request?: string;
+    mandate_request_mandate?: string;
   };
 }
 

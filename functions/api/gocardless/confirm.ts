@@ -74,7 +74,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     br = fulfilJson.billing_requests;
   }
 
-  const mandateId = br.links?.mandate;
+  const mandateId = br.links?.mandate_request_mandate;
   if (!mandateId) {
     console.error('No mandate after fulfil:', { status: br.status, links: br.links });
     return Response.redirect(
