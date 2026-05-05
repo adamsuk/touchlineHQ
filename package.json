@@ -5,5 +5,10 @@
     "@cloudflare/workers-types": "^4.20250430.0",
     "@types/node": "^25.5.0",
     "wrangler": "^4.0.0"
+  },
+  "scripts": {
+    "dev": "cd website && npm run dev",
+    "build": "cd website && npm run build",
+    "preview": "npx wrangler pages dev website/dist"
   }
 }
