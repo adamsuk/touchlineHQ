@@ -41,12 +41,12 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
           description: description || `${paymentType} payment - FAN ${fan}`,
         },
         metadata: {
-          team,
-          fan,
-          payment_type: paymentType,
-          reference,
-          amount_in_pence: String(amountInPence),
-          interval_unit: intervalUnit || 'monthly',
+          // 1. Keep the most important unique identifier
+          reference: reference, 
+          // 2. Combine tracking data into one string
+          tracking_info: `team:${team}|fan:${fan}|type:${paymentType}`,
+          // 3. Combine billing details into one string
+          billing_details: `${amountInPence}p-${intervalUnit || 'monthly'}`
         },
       },
     }),
