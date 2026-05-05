@@ -33,8 +33,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          workingDirectory: website
-          command: pages deploy dist --project-name=touchlinehq --branch=main
-        env:
-          GC_ACCESS_TOKEN: ${{ secrets.GC_ACCESS_TOKEN }}
-          GC_ENVIRONMENT: ${{ secrets.GC_ENVIRONMENT }}
+          command: pages deploy website/dist --project-name=touchlinehq --branch=main
