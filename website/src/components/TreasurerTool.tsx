@@ -26,7 +26,8 @@ export const TreasurerTool = () => {
   const generateLink = async () => {
     const ref = getReference();
     if (!ref) return;
-    const res = await fetch('/api/payments', {
+    const params = new URLSearchParams({ team, fan }).toString();
+    const res = await fetch(`/api/payments/start?${params}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(ref),
