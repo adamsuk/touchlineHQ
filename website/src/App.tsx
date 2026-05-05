@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppShell, Center, Loader, MantineProvider } from '@mantine/core';
 import { loadAllData } from './data';
 import type { AppData } from './types';
@@ -32,8 +32,8 @@ export const App = () => {
 
   return (
     <MantineProvider theme={clubTheme}>
-      <HashRouter>
-        <AppShell>
+      <AppShell>
+        <BrowserRouter>
           <SiteHeader club={data.club} />
           <AppShell.Main p={0}>
             <Routes>
@@ -43,8 +43,8 @@ export const App = () => {
               <Route path="*" element={<HomePage data={data} />} />
             </Routes>
           </AppShell.Main>
-        </AppShell>
-      </HashRouter>
+        </BrowserRouter>
+      </AppShell>
     </MantineProvider>
   );
 }

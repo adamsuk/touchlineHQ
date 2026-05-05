@@ -71,7 +71,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     description: description || `${paymentType} payment - FAN ${fan}`,
   });
   const redirectUri = `${origin}/api/gocardless/confirm?${confirmParams.toString()}`;
-  const exitUri = `${origin}/#/payment-cancelled`;
+  const exitUri = `${origin}/payment-cancelled`;
 
   // Create the billing request flow to get the hosted payment URL
   const flowRes = await fetch(`${gcBase}/billing_request_flows`, {

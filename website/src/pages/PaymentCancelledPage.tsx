@@ -20,7 +20,7 @@ export function PaymentCancelledPage() {
           If you'd like to set up your subscription, contact your club treasurer for a new payment link.
         </Text>
 
-        <Button component="a" href="/#" color="green.6" size="lg" radius="xl">
+        <Button component="a" href="/" color="green.6" size="lg" radius="xl">
           Return to Home
         </Button>
       </Stack>

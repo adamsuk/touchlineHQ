@@ -81,7 +81,7 @@ export function PaymentSuccessPage() {
           </Stack>
         </Paper>
 
-        <Button component="a" href="/#" color="green.6" size="lg" radius="xl">
+        <Button component="a" href="/" color="green.6" size="lg" radius="xl">
           Return to Home
         </Button>
       </Stack>
