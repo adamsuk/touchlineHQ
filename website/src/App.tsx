@@ -6,6 +6,8 @@ import type { AppData } from './types';
 import { createClubTheme } from './theme';
 import { SiteHeader } from './components/SiteHeader';
 import { HomePage } from './pages/HomePage';
+import { PaymentSuccessPage } from './pages/PaymentSuccessPage';
+import { PaymentCancelledPage } from './pages/PaymentCancelledPage';
 
 export const App = () => {
   const [data, setData] = useState<AppData | null>(null);
@@ -36,7 +38,8 @@ export const App = () => {
           <AppShell.Main p={0}>
             <Routes>
               <Route path="/" element={<HomePage data={data} />} />
-              {/* Only one route - any other path redirects to home */}
+              <Route path="/payment-success" element={<PaymentSuccessPage />} />
+              <Route path="/payment-cancelled" element={<PaymentCancelledPage />} />
               <Route path="*" element={<HomePage data={data} />} />
             </Routes>
           </AppShell.Main>
