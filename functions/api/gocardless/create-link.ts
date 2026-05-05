@@ -36,10 +36,18 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     headers: gcHeaders,
     body: JSON.stringify({
       billing_requests: {
+        // Links the reference to the actual Customer record
+        customer_request: {
+          metadata: {
+            reference: reference 
+          }
+        },
+        // Links it to the Mandate
         mandate_request: {
           scheme: 'bacs',
           description: description || `${paymentType} payment - FAN ${fan}`,
         },
+        // Links it to the Billing Request event itself
         metadata: {
           // 1. Keep the most important unique identifier
           reference: reference, 
@@ -71,6 +79,9 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   const redirectUri = `${origin}/api/gocardless/confirm?${confirmParams.toString()}`;
   const exitUri = `${origin}/#/payment-cancelled`;
 
+  // Generate a simple random token (or use a UUID library)
+  const sessionToken = Math.random().toString(36).substring(2, 15);
+
   // Create the billing request flow to get the hosted payment URL
   const flowRes = await fetch(`${gcBase}/billing_request_flows`, {
     method: 'POST',
@@ -79,6 +90,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
       billing_request_flows: {
         redirect_uri: redirectUri,
         exit_uri: exitUri,
+        session_token: sessionToken,
         links: {
           billing_request: br.id,
         },
