@@ -36,6 +36,7 @@ export interface GCSubscription {
   currency: string;
   interval_unit: 'monthly' | 'weekly' | 'yearly';
   name: string;
+  metadata?: Record<string, string>;
   links: {
     mandate: string;
   };
