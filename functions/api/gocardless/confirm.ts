@@ -46,11 +46,41 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
     return Response.redirect(`${origin}/payment-cancelled?reason=fetch_failed`, 302);
   }
 
-  const { billing_requests: br } = await brRes.json<{ billing_requests: GCBillingRequest }>();
+  let { billing_requests: br } = await brRes.json<{ billing_requests: GCBillingRequest }>();
+
+  // After the customer completes the hosted page the billing request often sits
+  // in `ready_to_fulfil` until we explicitly fulfil it — that's the step that
+  // actually creates the mandate.
+  if (br.status !== 'fulfilled') {
+    const fulfilRes = await fetch(
+      `${gcBase}/billing_requests/${billingRequestId}/actions/fulfil`,
+      {
+        method: 'POST',
+        headers: gcHeaders,
+        body: JSON.stringify({}),
+      }
+    );
+
+    if (!fulfilRes.ok) {
+      const errText = await fulfilRes.text();
+      console.error('Fulfil failed:', { initialStatus: br.status, error: errText });
+      return Response.redirect(
+        `${origin}/payment-cancelled?reason=fulfil_failed&status=${br.status}`,
+        302
+      );
+    }
+
+    const fulfilJson = await fulfilRes.json<{ billing_requests: GCBillingRequest }>();
+    br = fulfilJson.billing_requests;
+  }
 
   const mandateId = br.links?.mandate;
-  if (!mandateId || br.status !== 'fulfilled') {
-    return Response.redirect(`${origin}/payment-cancelled?reason=not_fulfilled`, 302);
+  if (!mandateId) {
+    console.error('No mandate after fulfil:', { status: br.status, links: br.links });
+    return Response.redirect(
+      `${origin}/payment-cancelled?reason=no_mandate&status=${br.status}`,
+      302
+    );
   }
 
   // Create the subscription against the mandate
