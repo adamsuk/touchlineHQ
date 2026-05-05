@@ -114,7 +114,7 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
   const { subscriptions: sub } = await subRes.json<{ subscriptions: GCSubscription }>();
 
   return Response.redirect(
-    `${origin}/payment-success?mandate=${mandateId}&subscription=${sub.id}&ref=${encodeURIComponent(reference)}`,
+    `${origin}/payment-success?mandate=${mandateId}&subscription=${sub.id}&ref=${encodeURIComponent(reference)}&amount=${amountInPence}&interval_unit=${intervalUnit || 'monthly'}`,
     302
   );
 };

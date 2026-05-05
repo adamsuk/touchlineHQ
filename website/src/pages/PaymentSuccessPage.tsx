@@ -1,28 +1,26 @@
-import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import {
   Container, Stack, Title, Text, Paper, Group,
-  Button, Alert, Badge, ThemeIcon,
+  Button, Alert, Badge, ThemeIcon, Divider,
 } from '@mantine/core';
 import { IconCheck, IconAlertTriangle, IconReceipt } from '@tabler/icons-react';
 
-function parseHashParams(): URLSearchParams {
-  const hash = window.location.hash;
-  const queryStart = hash.indexOf('?');
-  if (queryStart === -1) return new URLSearchParams();
-  return new URLSearchParams(hash.slice(queryStart + 1));
+function formatAmount(amountStr: string | null, intervalUnit: string | null): string {
+  const pence = parseInt(amountStr ?? '', 10);
+  if (isNaN(pence)) return '';
+  const pounds = (pence / 100).toLocaleString('en-GB', { style: 'currency', currency: 'GBP' });
+  const freq = intervalUnit === 'weekly' ? 'week' : intervalUnit === 'yearly' ? 'year' : 'month';
+  return `${pounds} / ${freq}`;
 }
 
 export function PaymentSuccessPage() {
-  const [params, setParams] = useState<URLSearchParams>(new URLSearchParams());
-
-  useEffect(() => {
-    setParams(parseHashParams());
-  }, []);
+  const [params] = useSearchParams();
 
   const mandateId = params.get('mandate');
   const subscriptionId = params.get('subscription');
   const reference = params.get('ref');
   const warning = params.get('warning');
+  const amountDisplay = formatAmount(params.get('amount'), params.get('interval_unit'));
 
   return (
     <Container size="sm" py="xl">
@@ -52,8 +50,7 @@ export function PaymentSuccessPage() {
           <Alert icon={<IconReceipt size={16} />} color="green" variant="light" radius="md" w="100%">
             <Text size="sm">
               Your recurring subscription has been created. Payments will be collected automatically
-              each month and will appear on your bank statement with reference{' '}
-              <strong>{reference}</strong>.
+              and will appear on your bank statement.
             </Text>
           </Alert>
         )}
@@ -66,6 +63,13 @@ export function PaymentSuccessPage() {
                 <Badge size="lg" variant="light" color="green">{reference}</Badge>
               </Group>
             )}
+            {amountDisplay && (
+              <Group justify="space-between">
+                <Text size="sm" c="dimmed">Amount</Text>
+                <Text size="sm" fw={600}>{amountDisplay}</Text>
+              </Group>
+            )}
+            {(mandateId || subscriptionId) && <Divider />}
             {mandateId && (
               <Group justify="space-between">
                 <Text size="sm" c="dimmed">Mandate ID</Text>
