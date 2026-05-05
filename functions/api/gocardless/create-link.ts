@@ -36,12 +36,6 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     headers: gcHeaders,
     body: JSON.stringify({
       billing_requests: {
-        // Links the reference to the actual Customer record
-        customer_request: {
-          metadata: {
-            reference: reference 
-          }
-        },
         // Links it to the Mandate
         mandate_request: {
           scheme: 'bacs',
