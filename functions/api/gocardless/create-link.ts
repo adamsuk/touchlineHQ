@@ -65,6 +65,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   // the subscription without a database or KV store
   const origin = new URL(request.url).origin;
   const confirmParams = new URLSearchParams({
+    billing_request_id: br.id,
     reference,
     amount: String(amountInPence),
     interval_unit: intervalUnit || 'monthly',
