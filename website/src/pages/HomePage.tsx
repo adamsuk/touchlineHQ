@@ -407,7 +407,6 @@ export const HomePage = ({ data }: Props) => {
                   justify="center"
                   style={{ display: 'flex', alignItems: 'center' }}
                 >
-                  Email
                   <Box visibleFrom="sm">{contact.email}</Box>
                 </Button>
                 <Group gap="lg" mt="md">
