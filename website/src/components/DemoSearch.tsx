@@ -17,7 +17,10 @@ export function DemoSearch() {
   useEffect(() => {
     loadClubSlugs()
       .then(slugs => {
-        const options = slugs.map(slug => ({
+        // Create a unique array of slugs using Set
+        const uniqueSlugs = Array.from(new Set(slugs));
+
+        const options = uniqueSlugs.map(slug => ({
           value: slug,
           label: slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
         }));
