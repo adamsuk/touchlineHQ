@@ -1,10 +1,10 @@
 import type { AppData, Club, Feature, Repo, Contact, ClubFeed, LiveTeam, TeamFeed } from './types';
 
 const BASE = 'data/';
-const FEEDS_BASE = 'https://raw.githubusercontent.com/touchlineHQ/fulltimeFeeds/main/feeds/';
-const CALENDARS_BASE = 'https://raw.githubusercontent.com/touchlineHQ/fulltimeFeeds/main/calendars/';
+const FEEDS_BASE = 'https://fixtures.touchlinehq.co.uk/feeds/';
+const CALENDARS_BASE = 'https://fixtures.touchlinehq.co.uk/calendars/';
 const INDEX_URL = `${FEEDS_BASE}index.json`;
-const CLUBS_API_URL = 'https://api.github.com/repos/touchlineHQ/fulltimeFeeds/contents/feeds/clubs';
+const CLUBS_API_URL = 'https://fixtures.touchlinehq.co.uk/feeds/clubs';
 
 export interface FeedTeamEntry {
   name: string;
