@@ -1,16 +1,26 @@
-import { Group, Text, ActionIcon, Button, Burger, Drawer, Stack, Box, Image } from '@mantine/core';
+import { AppShell, Group, Text, ActionIcon, Button, Burger, Drawer, Stack, Box, Image } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconBrandGithub, IconBrandTwitter, IconBrandLinkedin, IconList, IconCode, IconCalendar, IconMail } from '@tabler/icons-react';
-import { Link } from 'react-router-dom';
+import { IconBrandGithub, IconBrandTwitter, IconBrandLinkedin, IconList, IconCode, IconCalendar, IconMail, IconCalendarStats } from '@tabler/icons-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import type { ReactNode } from 'react';
 import type { Club } from '../types';
 
 interface Props {
   club: Club;
 }
 
-export function SiteHeader({ club }: Props) {
+interface NavItem {
+  label: string;
+  icon: ReactNode;
+  id?: string;
+  to?: string;
+}
+
+export const SiteHeader = ({ club }: Props) => {
   const [opened, { toggle, close }] = useDisclosure(false);
-  
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -19,15 +29,47 @@ export function SiteHeader({ club }: Props) {
     close();
   };
 
-  const navItems = [
+  const goToSection = (id: string) => {
+    if (location.pathname !== '/') {
+      navigate('/');
+      window.setTimeout(() => scrollToSection(id), 150);
+    } else {
+      scrollToSection(id);
+    }
+  };
+
+  const navItems: NavItem[] = [
     { id: 'features', label: 'Features', icon: <IconList size={18} /> },
+    { to: '/calendar', label: 'Team Calendars', icon: <IconCalendarStats size={18} /> },
     { id: 'demo', label: 'Live Demo', icon: <IconCalendar size={18} /> },
     { id: 'opensource', label: 'Open Source', icon: <IconCode size={18} /> },
     { id: 'contact', label: 'Contact', icon: <IconMail size={18} /> },
   ];
 
+  const renderNavItem = (item: NavItem, mobile: boolean) => {
+    const shared = {
+      variant: 'subtle' as const,
+      leftSection: item.icon,
+      size: mobile ? ('lg' as const) : ('compact-sm' as const),
+      justify: mobile ? ('start' as const) : undefined,
+      fullWidth: mobile || undefined,
+    };
+    if (item.to) {
+      return (
+        <Button key={item.label} {...shared} component={Link} to={item.to} onClick={close}>
+          {item.label}
+        </Button>
+      );
+    }
+    return (
+      <Button key={item.label} {...shared} onClick={() => item.id && goToSection(item.id)}>
+        {item.label}
+      </Button>
+    );
+  };
+
   return (
-    <>
+    <AppShell.Header>
       <Box h={70}>
         <Group h="100%" px="md" justify="space-between" wrap="nowrap">
         {/* Logo / Brand */}
@@ -52,17 +94,7 @@ export function SiteHeader({ club }: Props) {
 
         {/* Desktop Navigation Links */}
         <Group gap="md" wrap="nowrap" visibleFrom="md">
-          {navItems.map((item) => (
-            <Button
-              key={item.id}
-              variant="subtle"
-              size="compact-sm"
-              leftSection={item.icon}
-              onClick={() => scrollToSection(item.id)}
-            >
-              {item.label}
-            </Button>
-          ))}
+          {navItems.map((item) => renderNavItem(item, false))}
         </Group>
 
         {/* Desktop Social Links & CTA */}
@@ -130,19 +162,7 @@ export function SiteHeader({ club }: Props) {
         size="sm"
       >
         <Stack gap="md">
-          {navItems.map((item) => (
-            <Button
-              key={item.id}
-              variant="subtle"
-              justify="start"
-              size="lg"
-              leftSection={item.icon}
-              onClick={() => scrollToSection(item.id)}
-              fullWidth
-            >
-              {item.label}
-            </Button>
-          ))}
+          {navItems.map((item) => renderNavItem(item, true))}
           <Stack gap="xs" mt="lg">
             <Text size="sm" fw={600} c="dimmed">Social Links</Text>
             <Group gap="xs">
@@ -200,6 +220,6 @@ export function SiteHeader({ club }: Props) {
           </Stack>
         </Stack>
       </Drawer>
-    </>
+    </AppShell.Header>
   );
-}
+};
