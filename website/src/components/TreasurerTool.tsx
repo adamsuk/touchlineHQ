@@ -50,6 +50,7 @@ export const TreasurerTool = () => {
     setError('');
     setGeneratedLink('');
     setGeneratedRef('');
+    setCopied(false);
     setCopyError(false);
 
     try {
@@ -84,6 +85,7 @@ export const TreasurerTool = () => {
   };
 
   const copyToClipboard = async () => {
+    setCopied(false);
     setCopyError(false);
     const ok = await copyTextToClipboard(generatedLink);
     if (!ok) {

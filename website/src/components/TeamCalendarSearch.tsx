@@ -52,22 +52,34 @@ export function TeamCalendarSearch() {
     setCopyFailed(false);
     if (!selectedEntry) {
       setFeed(null);
+      setLoadingFeed(false);
       return;
     }
 
     setLoadingFeed(true);
     setError(null);
+    let isCurrent = true;
     loadTeamFeed(selectedEntry.league, selectedEntry.slug)
       .then(loaded => {
-        setFeed(loaded);
+        if (!isCurrent) return;
+        if (loaded === null) {
+          setError(`Unable to load fixtures for ${selectedEntry.name}. The feed may be temporarily unavailable.`);
+          setFeed(null);
+        } else {
+          setFeed(loaded);
+        }
         setLoadingFeed(false);
       })
       .catch(err => {
+        if (!isCurrent) return;
         console.error('Failed to load team feed:', err);
         setError(`Unable to load fixtures for ${selectedEntry.name}. The feed may be temporarily unavailable.`);
         setFeed(null);
         setLoadingFeed(false);
       });
+    return () => {
+      isCurrent = false;
+    };
   }, [selectedEntry]);
 
   const nextFixtures = useMemo(() => {
