@@ -52,6 +52,7 @@ export function TeamCalendarSearch() {
     setCopyFailed(false);
     if (!selectedEntry) {
       setFeed(null);
+      setError(null);
       setLoadingFeed(false);
       return;
     }
