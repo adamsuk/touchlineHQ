@@ -1,7 +1,7 @@
 import { AppShell, Group, Text, ActionIcon, Button, Burger, Drawer, Stack, Box, Image } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconBrandGithub, IconBrandTwitter, IconBrandLinkedin, IconList, IconCode, IconCalendar, IconMail, IconCalendarStats } from '@tabler/icons-react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { IconBrandGithub, IconBrandTwitter, IconBrandLinkedin, IconHome, IconCalendar, IconMail } from '@tabler/icons-react';
+import { Link } from 'react-router-dom';
 import type { ReactNode } from 'react';
 import type { Club } from '../types';
 
@@ -12,39 +12,21 @@ interface Props {
 interface NavItem {
   label: string;
   icon: ReactNode;
-  id?: string;
-  to?: string;
+  to: string;
 }
 
 export const SiteHeader = ({ club }: Props) => {
   const [opened, { toggle, close }] = useDisclosure(false);
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-    close();
-  };
-
-  const goToSection = (id: string) => {
-    if (location.pathname !== '/') {
-      navigate('/');
-      window.setTimeout(() => scrollToSection(id), 150);
-    } else {
-      scrollToSection(id);
-    }
-  };
 
   const navItems: NavItem[] = [
-    { id: 'features', label: 'Features', icon: <IconList size={18} /> },
-    { to: '/calendar', label: 'Team Calendars', icon: <IconCalendarStats size={18} /> },
-    { id: 'demo', label: 'Live Demo', icon: <IconCalendar size={18} /> },
-    { id: 'opensource', label: 'Open Source', icon: <IconCode size={18} /> },
-    { id: 'contact', label: 'Contact', icon: <IconMail size={18} /> },
+    { to: '/', label: 'Home', icon: <IconHome size={18} /> },
+    { to: '/calendar', label: 'Team Calendars', icon: <IconCalendar size={18} /> },
   ];
+
+  const handleNavClick = () => {
+    window.scrollTo(0, 0);
+    close();
+  };
 
   const renderNavItem = (item: NavItem, mobile: boolean) => {
     const shared = {
@@ -54,15 +36,8 @@ export const SiteHeader = ({ club }: Props) => {
       justify: mobile ? ('start' as const) : undefined,
       fullWidth: mobile || undefined,
     };
-    if (item.to) {
-      return (
-        <Button key={item.label} {...shared} component={Link} to={item.to} onClick={close}>
-          {item.label}
-        </Button>
-      );
-    }
     return (
-      <Button key={item.label} {...shared} onClick={() => item.id && goToSection(item.id)}>
+      <Button key={item.label} {...shared} component={Link} to={item.to} onClick={handleNavClick}>
         {item.label}
       </Button>
     );
