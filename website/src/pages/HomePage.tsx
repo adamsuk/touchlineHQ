@@ -1,6 +1,7 @@
 import { Title, Text, Button, Group, SimpleGrid, Paper, ThemeIcon, Stack, Container, Anchor, List, Box, Flex, Badge, Image } from '@mantine/core';
-import { IconCheck, IconBrandGithub, IconCalendar, IconCode, IconMail, IconBrandGoogle, IconCloud, IconDeviceDesktop, IconUsers, IconShield, IconCreditCard, IconBrandOpenSource } from '@tabler/icons-react';
+import { IconCheck, IconBrandGithub, IconCalendar, IconCode, IconMail, IconBrandGoogle, IconCloud, IconDeviceDesktop, IconUsers, IconShield, IconCreditCard, IconBrandOpenSource, IconCalendarPlus } from '@tabler/icons-react';
 import { useMediaQuery } from '@mantine/hooks';
+import { Link } from 'react-router-dom';
 import type { AppData } from '../types';
 import { DemoSearch } from '../components/DemoSearch';
 import { TreasurerTool } from '../components/TreasurerTool';
@@ -254,20 +255,34 @@ export const HomePage = ({ data }: Props) => {
             <Text size="lg" c="dimmed" ta="center" maw={800} mx="auto">
               View our sample club site or search for any grassroots football club to see live fixtures, results, and recent form powered by our real-time data integration.
             </Text>
-            <Button 
-              component="a" 
-              href="https://clubs.touchlinehq.co.uk/demo/"
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="outline"
-              leftSection={<IconDeviceDesktop size={20} />}
-              size="lg"
-              radius="xl"
-              color="green.6"
-              className="hero-btn-full"
-            >
-              View Sample Club
-            </Button>
+            <Group justify="center" gap="md" wrap="wrap">
+              <Button
+                component="a"
+                href="https://clubs.touchlinehq.co.uk/demo/"
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outline"
+                leftSection={<IconDeviceDesktop size={20} />}
+                size="lg"
+                radius="xl"
+                color="green.6"
+                className="hero-btn-full"
+              >
+                View Sample Club
+              </Button>
+              <Button
+                component={Link}
+                to="/calendar"
+                variant="filled"
+                leftSection={<IconCalendarPlus size={20} />}
+                size="lg"
+                radius="xl"
+                color="green.6"
+                className="hero-btn-full"
+              >
+                Get your team's calendar
+              </Button>
+            </Group>
             <Paper p="xl" radius="lg" withBorder style={{ borderColor: 'var(--mantine-color-gray-2)', background: 'white' }}>
               <Stack gap="lg">
                 <DemoSearch />

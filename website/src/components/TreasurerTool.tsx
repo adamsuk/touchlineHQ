@@ -7,6 +7,7 @@ import {
   IconCreditCard, IconReceipt, IconCopy, IconCheck,
   IconShield, IconAlertCircle, IconExternalLink,
 } from '@tabler/icons-react';
+import { copyTextToClipboard } from '../utils/clipboard';
 
 const paymentTypes = [
   { value: 'SUBS', label: 'Subscription Fees' },
@@ -31,6 +32,7 @@ export const TreasurerTool = () => {
   const [generatedLink, setGeneratedLink] = useState('');
   const [generatedRef, setGeneratedRef] = useState('');
   const [copied, setCopied] = useState(false);
+  const [copyError, setCopyError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -48,6 +50,8 @@ export const TreasurerTool = () => {
     setError('');
     setGeneratedLink('');
     setGeneratedRef('');
+    setCopied(false);
+    setCopyError(false);
 
     try {
       const amount = parseFloat(amountGbp);
@@ -80,8 +84,14 @@ export const TreasurerTool = () => {
     }
   };
 
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(generatedLink);
+  const copyToClipboard = async () => {
+    setCopied(false);
+    setCopyError(false);
+    const ok = await copyTextToClipboard(generatedLink);
+    if (!ok) {
+      setCopyError(true);
+      return;
+    }
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -228,6 +238,14 @@ export const TreasurerTool = () => {
                 Open Payment Page
               </Button>
             </Group>
+
+            {copyError && (
+              <Alert icon={<IconAlertCircle size={16} />} color="red" variant="light" radius="md">
+                <Text size="sm">
+                  Couldn't access your clipboard — please select and copy the payment link above manually.
+                </Text>
+              </Alert>
+            )}
 
             <Alert icon={<IconReceipt size={16} />} color="blue" variant="light" radius="md">
               <Text size="sm">

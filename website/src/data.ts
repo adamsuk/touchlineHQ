@@ -10,6 +10,7 @@ export interface FeedTeamEntry {
   name: string;
   slug: string;
   league: string;
+  leagueName?: string;
 }
 
 interface IndexPayload {
@@ -41,11 +42,11 @@ export async function loadAllFeedTeams(): Promise<FeedTeamEntry[]> {
   try {
     const res = await fetch(INDEX_URL);
     if (!res.ok) return [];
-    const data = await res.json() as { leagues: { slug: string; teams: { name: string; slug: string }[] }[] };
+    const data = await res.json() as { leagues: { name?: string; slug: string; teams: { name: string; slug: string }[] }[] };
     const teams: FeedTeamEntry[] = [];
     for (const league of data.leagues) {
       for (const team of league.teams) {
-        teams.push({ name: team.name, slug: team.slug, league: league.slug });
+        teams.push({ name: team.name, slug: team.slug, league: league.slug, leagueName: league.name });
       }
     }
     return teams;
@@ -60,6 +61,14 @@ export function teamFeedUrl(league: string, slug: string): string {
 
 export function teamCalendarUrl(league: string, slug: string): string {
   return `${CALENDARS_BASE}${league}/${slug}.ics`;
+}
+
+export function webcalTeamUrl(league: string, slug: string): string {
+  return teamCalendarUrl(league, slug).replace(/^https:/, 'webcal:');
+}
+
+export function googleCalendarSubscribeUrl(league: string, slug: string): string {
+  return `https://calendar.google.com/calendar/r?cid=${encodeURIComponent(webcalTeamUrl(league, slug))}`;
 }
 
 export async function loadTeamFeed(league: string, slug: string): Promise<TeamFeed | null> {
