@@ -12,21 +12,30 @@ import { PaymentCancelledPage } from './pages/PaymentCancelledPage';
 
 export const App = () => {
   const [data, setData] = useState<AppData | null>(null);
+  const [showSpinner, setShowSpinner] = useState(false);
 
   useEffect(() => {
     loadAllData().then(setData);
   }, []);
 
   useEffect(() => {
+    if (!data) {
+      const id = window.setTimeout(() => setShowSpinner(true), 300);
+      return () => clearTimeout(id);
+    }
+    setShowSpinner(false);
+  }, [data]);
+
+  useEffect(() => {
     if (data) document.title = data.club.name;
   }, [data]);
 
   if (!data) {
-    return (
+    return showSpinner ? (
       <Center h="100vh">
         <Loader size="xl" />
       </Center>
-    );
+    ) : null;
   }
 
   const clubTheme = createClubTheme(data.club.primaryColor);
