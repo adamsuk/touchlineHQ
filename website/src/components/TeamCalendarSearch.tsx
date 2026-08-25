@@ -254,7 +254,7 @@ export function TeamCalendarSearch() {
                 <Menu.Item
                   leftSection={<IconBrandWhatsapp size={16} />}
                   component="a"
-                  href={`https://api.whatsapp.com/send?text=${encodeURIComponent(`Follow ${selectedEntry?.name} fixtures — subscribe to their calendar feed on TouchlineHQ`)}`}
+                  href={`https://api.whatsapp.com/send?text=${encodeURIComponent(`Follow ${selectedEntry?.name} fixtures — subscribe to their calendar feed on TouchlineHQ: ${window.location.href}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
