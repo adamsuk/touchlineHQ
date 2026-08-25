@@ -146,7 +146,7 @@ export function TeamCalendarSearch() {
 
     if (navigator.share) {
       try {
-        await navigator.share({ title: shareTitle, text: `${shareText}\n${shareLink}`, url: shareLink });
+        await navigator.share({ title: shareTitle, text: shareText, url: shareLink });
         return;
       } catch {
         // user cancelled or error — show menu below
@@ -254,7 +254,7 @@ export function TeamCalendarSearch() {
                 <Menu.Item
                   leftSection={<IconBrandWhatsapp size={16} />}
                   component="a"
-                  href={`https://api.whatsapp.com/send?text=${encodeURIComponent(`Follow ${selectedEntry?.name} fixtures — ${window.location.href}`)}`}
+                  href={`https://api.whatsapp.com/send?text=${encodeURIComponent(`Follow ${selectedEntry?.name} fixtures — subscribe to their calendar feed on TouchlineHQ: ${window.location.href}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
