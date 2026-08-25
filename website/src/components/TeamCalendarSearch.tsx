@@ -25,6 +25,7 @@ export function TeamCalendarSearch() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [teams, setTeams] = useState<FeedTeamEntry[]>([]);
   const [loadingTeams, setLoadingTeams] = useState(true);
+  const [teamsLoadSuccess, setTeamsLoadSuccess] = useState(false);
   const [selected, setSelected] = useState<string | null>(null);
   const [feed, setFeed] = useState<TeamFeed | null>(null);
   const [loadingFeed, setLoadingFeed] = useState(false);
@@ -40,6 +41,7 @@ export function TeamCalendarSearch() {
         const sorted = [...loaded].sort((a, b) => a.name.localeCompare(b.name));
         setTeams(sorted);
         setLoadingTeams(false);
+        setTeamsLoadSuccess(true);
 
         const leagueParam = searchParams.get('league');
         const teamParam = searchParams.get('team');
@@ -62,11 +64,17 @@ export function TeamCalendarSearch() {
 
   useEffect(() => {
     if (selectedEntry) {
-      setSearchParams({ league: selectedEntry.league, team: selectedEntry.slug }, { replace: true });
-    } else if (searchParams.has('league') || searchParams.has('team')) {
-      setSearchParams({}, { replace: true });
+      const newParams = new URLSearchParams(searchParams);
+      newParams.set('league', selectedEntry.league);
+      newParams.set('team', selectedEntry.slug);
+      setSearchParams(newParams, { replace: true });
+    } else if (teamsLoadSuccess && (searchParams.has('league') || searchParams.has('team'))) {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.delete('league');
+      newParams.delete('team');
+      setSearchParams(newParams, { replace: true });
     }
-  }, [selectedEntry]);
+  }, [selectedEntry, teamsLoadSuccess]);
 
   useEffect(() => {
     setCopied(false);
