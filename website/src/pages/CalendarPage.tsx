@@ -2,6 +2,7 @@ import {
   Box, Container, Stack, Title, Text, Paper, SimpleGrid, ThemeIcon, Anchor, Image, Group,
 } from '@mantine/core';
 import { IconBrandGoogle, IconBrandApple, IconBrandWindows, IconCalendarPlus } from '@tabler/icons-react';
+import { Helmet } from 'react-helmet-async';
 import { TeamCalendarSearch } from '../components/TeamCalendarSearch';
 
 const subscribeGuides = [
@@ -44,6 +45,20 @@ export const CalendarPage = () => {
         background: 'linear-gradient(135deg, #f7fdf9 0%, #e6f9ee 100%)',
       }}
     >
+      <Helmet>
+        <title>Team Fixture Calendars — touchlineHQ</title>
+        <meta name="description" content="Subscribe to your grassroots football team's fixture calendar. Free live feeds for Google Calendar, Apple Calendar, and Outlook — updated automatically all season." />
+        <link rel="canonical" href="https://touchlinehq.co.uk/calendar" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Team Fixture Calendars — touchlineHQ" />
+        <meta property="og:description" content="Subscribe to your grassroots football team's fixture calendar. Free live feeds for Google Calendar, Apple Calendar, and Outlook — updated automatically all season." />
+        <meta property="og:url" content="https://touchlinehq.co.uk/calendar" />
+        <meta property="og:image" content="https://touchlinehq.co.uk/images/logo.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Team Fixture Calendars — touchlineHQ" />
+        <meta name="twitter:description" content="Subscribe to your grassroots football team's fixture calendar. Free live feeds for Google Calendar, Apple Calendar, and Outlook — updated automatically all season." />
+        <meta name="twitter:image" content="https://touchlinehq.co.uk/images/logo.png" />
+      </Helmet>
       <Box py="xl">
         <Container size="lg">
           <Stack gap="xl">

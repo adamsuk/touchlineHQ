@@ -4,6 +4,7 @@ import {
   Button, Alert, Badge, ThemeIcon, Divider,
 } from '@mantine/core';
 import { IconCheck, IconAlertTriangle, IconReceipt } from '@tabler/icons-react';
+import { Helmet } from 'react-helmet-async';
 
 const formatAmount = (amountStr: string | null, intervalUnit: string | null): string => {
   const pence = parseInt(amountStr ?? '', 10);
@@ -25,6 +26,10 @@ export const PaymentSuccessPage = () => {
 
   return (
     <Container size="sm" py="xl">
+      <Helmet>
+        <title>Payment Complete — touchlineHQ</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <Stack gap="xl" align="center">
         <ThemeIcon size={80} radius="xl" color="green.5" variant="light">
           <IconCheck size={48} />

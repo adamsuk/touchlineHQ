@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppShell, Center, Loader, MantineProvider } from '@mantine/core';
+import { HelmetProvider } from 'react-helmet-async';
 import { loadAllData } from './data';
 import type { AppData } from './types';
 import { createClubTheme } from './theme';
@@ -41,6 +42,7 @@ export const App = () => {
   const clubTheme = createClubTheme(data.club.primaryColor);
 
   return (
+    <HelmetProvider>
     <MantineProvider theme={clubTheme}>
       <BrowserRouter>
         <AppShell header={{ height: 70 }}>
@@ -65,6 +67,7 @@ export const App = () => {
         </AppShell>
       </BrowserRouter>
     </MantineProvider>
+    </HelmetProvider>
   );
 }
 

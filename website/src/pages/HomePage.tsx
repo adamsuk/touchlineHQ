@@ -2,6 +2,7 @@ import { Title, Text, Button, Group, SimpleGrid, Paper, ThemeIcon, Stack, Contai
 import { IconCheck, IconBrandGithub, IconCalendar, IconCode, IconMail, IconBrandGoogle, IconCloud, IconDeviceDesktop, IconUsers, IconShield, IconCreditCard, IconBrandOpenSource, IconCalendarPlus } from '@tabler/icons-react';
 import { useMediaQuery } from '@mantine/hooks';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import type { AppData } from '../types';
 import { DemoSearch } from '../components/DemoSearch';
 import { TreasurerTool } from '../components/TreasurerTool';
@@ -15,6 +16,20 @@ export const HomePage = ({ data }: Props) => {
 
   return (
     <Stack gap={0}>
+      <Helmet>
+        <title>{data.club.name}</title>
+        <meta name="description" content={`Custom website for ${data.club.name} with live fixtures, results, and team calendars. Powered by touchlineHQ.`} />
+        <link rel="canonical" href={`https://${data.club.domain}/`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={`${data.club.name} — touchlineHQ`} />
+        <meta property="og:description" content={`Custom website for ${data.club.name} with live fixtures, results, and team calendars. Powered by touchlineHQ.`} />
+        <meta property="og:url" content={`https://${data.club.domain}/`} />
+        <meta property="og:image" content={`https://${data.club.domain}/images/logo.png`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${data.club.name} — touchlineHQ`} />
+        <meta name="twitter:description" content={`Custom website for ${data.club.name} with live fixtures, results, and team calendars. Powered by touchlineHQ.`} />
+        <meta name="twitter:image" content={`https://${data.club.domain}/images/logo.png`} />
+      </Helmet>
       {/* Hero Section */}
       <Box 
         style={{
