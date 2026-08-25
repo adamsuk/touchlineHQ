@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import {
-  Select, Loader, Alert, Stack, Title, Group, Button, Paper, Text, Badge, Code,
+  Select, Loader, Alert, Stack, Title, Group, Button, Paper, Text, Badge, Menu,
 } from '@mantine/core';
 import {
-  IconAlertCircle, IconSearch, IconDownload, IconBrandGoogle, IconCopy, IconCheck, IconCalendarPlus,
+  IconAlertCircle, IconSearch, IconDownload, IconBrandGoogle, IconCopy, IconCheck, IconCalendarPlus, IconShare,
+  IconBrandWhatsapp, IconBrandTwitter, IconBrandFacebook, IconMail, IconLink,
 } from '@tabler/icons-react';
 import {
   loadAllFeedTeams, loadTeamFeed, teamCalendarUrl, googleCalendarSubscribeUrl,
@@ -20,6 +22,7 @@ function formatDate(iso: string): string {
 }
 
 export function TeamCalendarSearch() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [teams, setTeams] = useState<FeedTeamEntry[]>([]);
   const [loadingTeams, setLoadingTeams] = useState(true);
   const [selected, setSelected] = useState<string | null>(null);
@@ -28,12 +31,22 @@ export function TeamCalendarSearch() {
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [copyFailed, setCopyFailed] = useState(false);
+  const [copiedShare, setCopiedShare] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
 
   useEffect(() => {
     loadAllFeedTeams()
       .then(loaded => {
-        setTeams([...loaded].sort((a, b) => a.name.localeCompare(b.name)));
+        const sorted = [...loaded].sort((a, b) => a.name.localeCompare(b.name));
+        setTeams(sorted);
         setLoadingTeams(false);
+
+        const leagueParam = searchParams.get('league');
+        const teamParam = searchParams.get('team');
+        if (leagueParam && teamParam) {
+          const match = sorted.find(t => t.league === leagueParam && t.slug === teamParam);
+          if (match) setSelected(optionValue(match));
+        }
       })
       .catch(err => {
         console.error('Failed to load team list:', err);
@@ -46,6 +59,14 @@ export function TeamCalendarSearch() {
     () => teams.find(t => optionValue(t) === selected) ?? null,
     [teams, selected]
   );
+
+  useEffect(() => {
+    if (selectedEntry) {
+      setSearchParams({ league: selectedEntry.league, team: selectedEntry.slug }, { replace: true });
+    } else if (searchParams.has('league') || searchParams.has('team')) {
+      setSearchParams({}, { replace: true });
+    }
+  }, [selectedEntry]);
 
   useEffect(() => {
     setCopied(false);
@@ -85,8 +106,7 @@ export function TeamCalendarSearch() {
   const nextFixtures = useMemo(() => {
     if (!feed) return [];
     return [...feed.fixtures]
-      .sort((a, b) => a.date.localeCompare(b.date) || a.time.localeCompare(b.time))
-      .slice(0, 3);
+      .sort((a, b) => a.date.localeCompare(b.date) || a.time.localeCompare(b.time));
   }, [feed]);
 
   const options = useMemo(
@@ -106,6 +126,25 @@ export function TeamCalendarSearch() {
     }
     setCopied(true);
     window.setTimeout(() => setCopied(false), 2000);
+  };
+
+  const shareUrl = async () => {
+    if (!selectedEntry) return;
+    const leagueLabel = selectedEntry.leagueName ? ` — ${selectedEntry.leagueName}` : '';
+    const shareTitle = `${selectedEntry.name}${leagueLabel}`;
+    const shareText = `Follow ${selectedEntry.name} fixtures — subscribe to their calendar feed on TouchlineHQ`;
+    const shareLink = window.location.href;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: shareTitle, text: `${shareText}\n${shareLink}`, url: shareLink });
+        return;
+      } catch {
+        // user cancelled or error — show menu below
+      }
+    }
+
+    setShareOpen(true);
   };
 
   return (
@@ -157,6 +196,7 @@ export function TeamCalendarSearch() {
               leftSection={<IconDownload size={18} />}
               color="green.6"
               radius="xl"
+              flex="1 0 auto"
             >
               Download .ics
             </Button>
@@ -174,6 +214,7 @@ export function TeamCalendarSearch() {
                 '--button-hover': 'var(--mantine-color-green-0)',
               }}
               radius="xl"
+              flex="1 0 auto"
             >
               Add to Google Calendar
             </Button>
@@ -181,11 +222,73 @@ export function TeamCalendarSearch() {
               onClick={copyUrl}
               leftSection={copied ? <IconCheck size={18} /> : <IconCopy size={18} />}
               variant="outline"
-              color="green.6"
+              color={copied ? 'teal' : 'green.6'}
               radius="xl"
+              flex="1 0 auto"
             >
-              {copied ? 'Copied!' : 'Copy feed URL'}
+              Copy feed URL
             </Button>
+            <Menu shadow="md" width={200} opened={shareOpen} onChange={setShareOpen}>
+              <Menu.Target>
+                <Button
+                  onClick={shareUrl}
+                  leftSection={<IconShare size={18} />}
+                  variant="outline"
+                  color="blue.6"
+                  radius="xl"
+                  flex="1 0 auto"
+                >
+                  Share
+                </Button>
+              </Menu.Target>
+              <Menu.Dropdown>
+                <Menu.Item
+                  leftSection={<IconBrandWhatsapp size={16} />}
+                  component="a"
+                  href={`https://api.whatsapp.com/send?text=${encodeURIComponent(`Follow ${selectedEntry?.name} fixtures — ${window.location.href}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  WhatsApp
+                </Menu.Item>
+                <Menu.Item
+                  leftSection={<IconBrandTwitter size={16} />}
+                  component="a"
+                  href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Follow ${selectedEntry?.name} fixtures — subscribe to their calendar feed on TouchlineHQ`)}&url=${encodeURIComponent(window.location.href)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Twitter / X
+                </Menu.Item>
+                <Menu.Item
+                  leftSection={<IconBrandFacebook size={16} />}
+                  component="a"
+                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Facebook
+                </Menu.Item>
+                <Menu.Item
+                  leftSection={<IconMail size={16} />}
+                  component="a"
+                  href={`mailto:?subject=${encodeURIComponent(`Follow ${selectedEntry?.name} fixtures`)}&body=${encodeURIComponent(`Check out ${selectedEntry?.name} fixtures on TouchlineHQ:\n${window.location.href}`)}`}
+                >
+                  Email
+                </Menu.Item>
+                <Menu.Divider />
+                <Menu.Item
+                  leftSection={copiedShare ? <IconCheck size={16} /> : <IconLink size={16} />}
+                  onClick={async () => {
+                    const ok = await copyTextToClipboard(window.location.href);
+                    setCopiedShare(ok);
+                    if (ok) window.setTimeout(() => setCopiedShare(false), 2000);
+                  }}
+                >
+                  {copiedShare ? 'Copied!' : 'Copy link'}
+                </Menu.Item>
+              </Menu.Dropdown>
+            </Menu>
           </Group>
 
           {copyFailed && (
@@ -193,11 +296,6 @@ export function TeamCalendarSearch() {
               Couldn't access your clipboard — please select and copy the URL below manually.
             </Alert>
           )}
-
-          <Text size="xs" c="dimmed">
-            Subscribe with this URL in any calendar app:{' '}
-            <Code>{teamCalendarUrl(selectedEntry.league, selectedEntry.slug)}</Code>
-          </Text>
 
           <Stack gap="xs">
             <Group gap="xs">
